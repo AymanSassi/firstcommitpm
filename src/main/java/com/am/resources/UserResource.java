@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.am.entity.Tuserfirstry;
+import com.am.entity.Tuser;
 import com.am.service.UserService;
 //http://localhost:8181/user/userList
 @RestController
@@ -18,7 +18,7 @@ public class UserResource {
 	private UserService userService;
 
 	@RequestMapping(value = "/userList", method = RequestMethod.GET)
-	public List<Tuserfirstry> bookList() {
+	public List<Tuser> bookList() {
 		return userService.findAll();
 	}
 	

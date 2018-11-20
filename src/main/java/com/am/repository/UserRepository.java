@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.am.entity.Tuserfirstry;
+import com.am.entity.Tuser;
 
-public interface UserRepository extends CrudRepository<Tuserfirstry, Long>{
-	Tuserfirstry findByUserlogin(String userlogin);
+public interface UserRepository extends CrudRepository<Tuser, Long>{
+	Tuser findByLoginuser(String userlogin);
 	
-	List<Tuserfirstry> findAll();
+	List<Tuser> findAll();
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-catalog="projectmanagement" match-name="tfunction"/>
+  <table-filter match-catalog="projectmanagement" match-name="tperson"/>
+  <table-filter match-catalog="projectmanagement" match-name="tproduct"/>
+  <table-filter match-catalog="projectmanagement" match-name="tproductversion"/>
+  <table-filter match-catalog="projectmanagement" match-name="treporter"/>
+  <table-filter match-catalog="projectmanagement" match-name="trole"/>
+  <table-filter match-catalog="projectmanagement" match-name="trolefunction"/>
+  <table-filter match-catalog="projectmanagement" match-name="tticket"/>
+  <table-filter match-catalog="projectmanagement" match-name="ttickoprodversresol"/>
+  <table-filter match-catalog="projectmanagement" match-name="tuser"/>
+  <table-filter match-catalog="projectmanagement" match-name="tuserrole"/>
+  <table-filter match-catalog="projectmanagement" match-name="tvocab"/>
+  <table-filter match-catalog="projectmanagement" match-name="tvocabword"/>
+</hibernate-reverse-engineering>

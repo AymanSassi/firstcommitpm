@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.am.repository.UserRepository;
 import com.am.service.UserService;
-import com.am.entity.Tuserfirstry;
+import com.am.entity.Tuser;
 
 
 @Service
@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserRepository userRepository;
 	
-	public List<Tuserfirstry> findAll(){
+	public List<Tuser> findAll(){
 		return userRepository.findAll();
 		
 	}
