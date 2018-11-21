@@ -24,7 +24,7 @@ public class Trole implements java.io.Serializable {
 	private int enabledrole;
 	private String descrole;
 	@JsonIgnore
-	private Set<Trolefunction> trolefunctions = new HashSet<Trolefunction>(0);
+	private Set<Troleview> troleviews = new HashSet<Troleview>(0);
 	@JsonIgnore
 	private Set<Tuserrole> tuserroles = new HashSet<Tuserrole>(0);
 
@@ -37,13 +37,13 @@ public class Trole implements java.io.Serializable {
 		this.enabledrole = enabledrole;
 	}
 
-	public Trole(int idrole, String namerole, int enabledrole, String descrole, Set<Trolefunction> trolefunctions,
+	public Trole(int idrole, String namerole, int enabledrole, String descrole, Set<Troleview> troleviews,
 			Set<Tuserrole> tuserroles) {
 		this.idrole = idrole;
 		this.namerole = namerole;
 		this.enabledrole = enabledrole;
 		this.descrole = descrole;
-		this.trolefunctions = trolefunctions;
+		this.troleviews = troleviews;
 		this.tuserroles = tuserroles;
 	}
 
@@ -86,12 +86,12 @@ public class Trole implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "trole")
-	public Set<Trolefunction> getTrolefunctions() {
-		return this.trolefunctions;
+	public Set<Troleview> getTroleviews() {
+		return this.troleviews;
 	}
 
-	public void setTrolefunctions(Set<Trolefunction> trolefunctions) {
-		this.trolefunctions = trolefunctions;
+	public void setTroleviews(Set<Troleview> troleviews) {
+		this.troleviews = troleviews;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "trole")
