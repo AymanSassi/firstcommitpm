@@ -4,6 +4,8 @@ package com.am.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -39,7 +41,7 @@ public class Troleview implements java.io.Serializable {
 	}
 
 	@Id
-
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idroleview", unique = true, nullable = false)
 	public int getIdroleview() {
 		return this.idroleview;

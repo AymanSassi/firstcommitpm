@@ -6,10 +6,13 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -44,6 +47,13 @@ public class Tperson implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	/*@GeneratedValue(strategy=GenerationType.TABLE , generator="employee_generator")
+	@TableGenerator(name="employee_generator", 
+	                table="pk_table", 
+	                pkColumnName="name", 
+	                valueColumnName="value",                            
+	                allocationSize=100)*/ 
 	@Column(name = "idperson", unique = true, nullable = false)
 	public int getIdperson() {
 		return this.idperson;
