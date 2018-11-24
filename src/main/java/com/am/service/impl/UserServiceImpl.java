@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 		Tuser user = userRepository.findByLoginuser(username);
 		if (user == null)
-			throw new UsernameNotFoundException("User Not Found with -> username or email : " + username);
+			throw new UsernameNotFoundException("Userlogin Not Found with -> username or email : " + username);
 		Hibernate.initialize(user.getAuthorities());
 		return user;
 	}

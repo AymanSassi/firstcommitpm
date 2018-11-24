@@ -1,5 +1,9 @@
 package com.am.security;
 
+import javax.servlet.FilterChain;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     UserServiceImpl userDetailsService;
 
     @Autowired
-    private JwtAuthEntryPoint unauthorizedHandler;
+    private AuthentificationError unauthorizedHandler;
 
     @Bean
     public JwtAuthTokenFilter authenticationJwtTokenFilter() {
@@ -51,20 +55,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
     
-    /*private BCryptPasswordEncoder passwordEncoder() {
-		return SecurityUtility.passwordEncoder();
-	}*/
-    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().
                 authorizeRequests()
-                .antMatchers("/security/**").permitAll()
+                .antMatchers("/securityapi/signup/**").permitAll()
+                .antMatchers("/securityapi/signin/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+    }
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) {
+    	
     }
 }

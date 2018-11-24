@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
+//A vérifier l'utilité
 public class RequestFilter implements Filter{
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) {
 		HttpServletRequest request = (HttpServletRequest) req;

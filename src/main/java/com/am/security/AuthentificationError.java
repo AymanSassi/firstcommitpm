@@ -14,9 +14,9 @@ import org.springframework.stereotype.Component;
 
 //Classe d'erreur d'authentification : model d'affichage de l'erreur de non autorisation
 @Component
-public class JwtAuthEntryPoint implements AuthenticationEntryPoint {
+public class AuthentificationError implements AuthenticationEntryPoint {
 
-    private static final Logger logger = LoggerFactory.getLogger(JwtAuthEntryPoint.class);
+    private static final Logger logger = LoggerFactory.getLogger(AuthentificationError.class);
     
     @Override
     public void commence(HttpServletRequest request,

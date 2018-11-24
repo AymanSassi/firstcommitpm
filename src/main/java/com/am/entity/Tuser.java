@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -41,6 +42,7 @@ public class Tuser implements UserDetails,java.io.Serializable {
 	private Set<Tuserrole> tuserroles=new HashSet<Tuserrole>(0);
 	
 	public Tuser() {
+		
 	}
 
 	public Tuser(Tperson tperson, int enableduser) {
@@ -67,7 +69,7 @@ public class Tuser implements UserDetails,java.io.Serializable {
 		this.iduser = iduser;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "idperson", nullable = false)
 	@JsonIgnore
 	public Tperson getTperson() {
@@ -77,6 +79,7 @@ public class Tuser implements UserDetails,java.io.Serializable {
 
 	public void setTperson(Tperson tperson) {
 		this.tperson = tperson;
+		//tperson.getTusers().add(this);
 	}
 
 	@Column(name = "loginuser", length = 30)

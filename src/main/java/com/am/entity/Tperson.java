@@ -3,6 +3,8 @@ package com.am.entity;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -81,7 +83,7 @@ public class Tperson implements java.io.Serializable {
 		this.emailperson = emailperson;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tperson")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tperson",cascade=CascadeType.PERSIST)
 	@JsonIgnore
 	public Set<Treporter> getTreporters() {
 		return this.treporters;
@@ -91,7 +93,7 @@ public class Tperson implements java.io.Serializable {
 		this.treporters = treporters;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tperson")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tperson",cascade=CascadeType.PERSIST)
 	@JsonIgnore
 	public Set<Tuser> getTusers() {
 		return this.tusers;

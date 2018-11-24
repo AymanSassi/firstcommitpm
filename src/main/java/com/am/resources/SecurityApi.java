@@ -35,116 +35,105 @@ import com.am.entity.Trole;
 import com.am.entity.Tuser;
 import com.am.message.request.LoginForm;
 import com.am.message.request.SignUpForm;
-import com.am.message.response.JwtResponse;
 import com.am.repository.PersonRepository;
 import com.am.repository.RoleRepository;
 import com.am.repository.UserRepository;
 import com.am.security.JwtProvider;
-import com.am.security.WebUtils;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/security")
-public class AuthRestAPIs {
+@RequestMapping("/securityapi")
+public class SecurityApi {
 
-    @Autowired
-    AuthenticationManager authenticationManager;
+	@Autowired
+	AuthenticationManager authenticationManager;
 
-    @Autowired
-    UserRepository userRepository;
-    
-    @Autowired
-    PersonRepository personRepository;
+	@Autowired
+	UserRepository userRepository;
 
-    @Autowired
-    RoleRepository roleRepository;
+	@Autowired
+	PersonRepository personRepository;
 
-    @Autowired
-    PasswordEncoder encoder;
+	@Autowired
+	RoleRepository roleRepository;
 
-    @Autowired
-    JwtProvider jwtProvider;
+	@Autowired
+	PasswordEncoder encoder;
 
-    @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
+	@Autowired
+	JwtProvider jwtProvider;
 
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsername(),
-                        loginRequest.getPassword()
-                )
-        );
+	@PostMapping("/signin")
+	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+		Authentication authentication = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
-        String jwt = jwtProvider.generateJwtToken(authentication);
-        return ResponseEntity.ok(new JwtResponse(jwt));
-    }
+		SecurityContextHolder.getContext().setAuthentication(authentication);
 
-    @PostMapping("/signup")
-    public ResponseEntity<String> registerUser2(@Valid @RequestBody SignUpForm signUpRequest) {
-        if(userRepository.existsByLoginuser(signUpRequest.getUsername())) {
-            return new ResponseEntity<String>("Fail -> Username is already taken!",
-                    HttpStatus.BAD_REQUEST);
-        }
+		String jwt = jwtProvider.generateJwtToken(authentication);
+		return ResponseEntity.ok(Collections.singletonMap("Token",jwt));
+	}
 
-        if(personRepository.existsByEmailperson(signUpRequest.getEmail())) {
-            return new ResponseEntity<String>("Fail -> Email is already in use!",
-                    HttpStatus.BAD_REQUEST);
-        }
+	@PostMapping("/signup")
+	public ResponseEntity<String> registerUser2(@Valid @RequestBody SignUpForm signUpRequest) {
+		if (userRepository.existsByLoginuser(signUpRequest.getUsername())) {
+			return new ResponseEntity<String>("Fail -> Username is already taken!", HttpStatus.BAD_REQUEST);
+		}
 
-        // Creating user's account
-        Tperson person=new Tperson();
-        person.setNameperson(signUpRequest.getName());
-        person.setEmailperson(signUpRequest.getEmail());
-        //personRepository.save(person);
-                
-        Tuser user = new Tuser();
-        user.setEnableduser(1);
-        user.setLoginuser(signUpRequest.getUsername());
-        user.setTperson(person);
-        user.setPwduser(encoder.encode(signUpRequest.getPassword()));
-        Set<String> strRoles = signUpRequest.getRole();
-        /*Set<Trole> roles = new HashSet<>();
+		if (personRepository.existsByEmailperson(signUpRequest.getEmail())) {
+			return new ResponseEntity<String>("Fail -> Email is already in use!", HttpStatus.BAD_REQUEST);
+		}
+		try {
+			// Creating user's account
+			Tperson person = new Tperson();
+			person.setNameperson(signUpRequest.getName());
+			person.setEmailperson(signUpRequest.getEmail());
 
-        strRoles.forEach(role -> {
-        	switch(role) {
-	    		case "admin":
-	    			Trole adminRole = roleRepository.findByNamerole("admin")
-	                .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
-	    			roles.add(adminRole);
-	    			
-	    			break;
-	    		case "pm":
-	            	Trole pmRole = roleRepository.findByNamerole("pm")
-	                .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
-	            	roles.add(pmRole);
-	            	
-	    			break;
-	    		default:
-	        		Trole userRole = roleRepository.findByNamerole("user")
-	                .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
-	        		roles.add(userRole);        			
-        	}
-        });*/
-        
-        //user.setTuserroles(tuserroles);
-        Set<Tuser> users=new HashSet<Tuser>(0);
-        users.add(user);
-        person.setTusers(users);
-        personRepository.save(person);
+			Tuser user = new Tuser();
+			user.setEnableduser(1);
+			user.setLoginuser(signUpRequest.getUsername());
+			user.setPwduser(encoder.encode(signUpRequest.getPassword()));
+			user.setTperson(person);
+			Set<String> strRoles = signUpRequest.getRole();
+			/*
+			 * Set<Trole> roles = new HashSet<>();
+			 * 
+			 * strRoles.forEach(role -> { switch(role) { case "admin": Trole adminRole =
+			 * roleRepository.findByNamerole("admin") .orElseThrow(() -> new
+			 * RuntimeException("Fail! -> Cause: User Role not find."));
+			 * roles.add(adminRole);
+			 * 
+			 * break; case "pm": Trole pmRole = roleRepository.findByNamerole("pm")
+			 * .orElseThrow(() -> new
+			 * RuntimeException("Fail! -> Cause: User Role not find.")); roles.add(pmRole);
+			 * 
+			 * break; default: Trole userRole = roleRepository.findByNamerole("user")
+			 * .orElseThrow(() -> new
+			 * RuntimeException("Fail! -> Cause: User Role not find."));
+			 * roles.add(userRole); } });
+			 */
 
-        return ResponseEntity.ok().body("User registered successfully!");
-    }
-    
-    @RequestMapping(value="/logout",method=RequestMethod.POST)
+			// user.setTuserroles(tuserroles);
+			// Set<Tuser> users=new HashSet<Tuser>(0);
+			// users.add(user);
+			// person.setTusers(users);
+			// personRepository.save(person);
+			userRepository.save(user);
+		} catch (Exception e) {
+			return new ResponseEntity<String>("Fail -> Erreur d'enregitrement ", HttpStatus.BAD_REQUEST);
+		}
+		return ResponseEntity.ok().body("User registered successfully!");
+	}
+
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
 	public Map<String, String> logout() {
 		SecurityContextHolder.clearContext();
 		System.out.println("Logout...");
 		return Collections.singletonMap("OK", "Logout");
 	}
-    
-    @RequestMapping("/token")
+
+	@RequestMapping("/token")
 	public Map<String, String> token(HttpSession session, HttpServletRequest request) {
 		System.out.println("1-remoteHost=" + request.getRemoteHost());
 		String remoteHost = request.getRemoteHost();
@@ -154,8 +143,8 @@ public class AuthRestAPIs {
 		return Collections.singletonMap("token", session.getId());
 
 	}
-    
-    @RequestMapping("/checkSession")
+
+	@RequestMapping("/checkSession")
 	public Map<String, String> checkSession() {
 		System.out.println("Session active!!");
 		return Collections.singletonMap("OK", "OK");
@@ -174,14 +163,14 @@ public class AuthRestAPIs {
 		return Collections.singletonMap("OK", "Logout");
 	}
 
-	
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String accessDenied(Principal principal) {
 
 		if (principal != null) {
 			User loginedUser = (User) ((Authentication) principal).getPrincipal();
 
-			String userInfo = WebUtils.toString(loginedUser);
+			//String userInfo = WebUtils.toString(loginedUser);
+			String userInfo = null;//WebUtils.toString(loginedUser);
 
 			// model.addAttribute("userInfo", userInfo);
 
