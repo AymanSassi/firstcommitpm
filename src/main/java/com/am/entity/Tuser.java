@@ -91,7 +91,7 @@ public class Tuser implements UserDetails,java.io.Serializable {
 		this.loginuser = loginuser;
 	}
 
-	@Column(name = "pwduser", length = 120)
+	@Column(name = "pwduser",  length = 120)
 	public String getPwduser() {
 		return this.pwduser;
 	}
