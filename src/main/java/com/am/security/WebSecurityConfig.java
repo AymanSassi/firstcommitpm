@@ -1,5 +1,7 @@
 package com.am.security;
 
+import java.security.SecureRandom;
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -24,79 +27,48 @@ import com.am.service.impl.UserServiceImpl;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(
-		prePostEnabled = true
-)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    UserServiceImpl userDetailsService;
+	@Autowired
+	UserServiceImpl userDetailsService;
 
-    @Autowired
-    private AuthentificationError unauthorizedHandler;
+	@Autowired
+	private AuthentificationError unauthorizedHandler;
 
-    @Bean
-    public JwtAuthTokenFilter authenticationJwtTokenFilter() {
-        return new JwtAuthTokenFilter();
-    }
+	@Bean
+	public JwtAuthTokenFilter authenticationJwtTokenFilter() {
+		return new JwtAuthTokenFilter();
+	}
 
-    @Override
-    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
-    }
+	@Override
+	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+		authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+	}
 
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+	@Bean
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-    
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().
-                authorizeRequests()
-                .antMatchers("/securityapi/signup/**").permitAll()
-                .antMatchers("/securityapi/signin/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        
-        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-    }
-    
-    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) {
-    	//A verifier l'utilité
-    	
-    	System.out.println("prefight");
-    	HttpServletRequest request = (HttpServletRequest) req;
-		HttpServletResponse response = (HttpServletResponse) res;
-		
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("Access-control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
-		response.setHeader("Access-Control-Allow-Headers", "x-requested-with, x-auth-token");
-		response.setHeader("Access-Control-Max-Age", "3600");
-		response.setHeader("Access-Control-Allow-Credentials", "true");
-		
-		if(!(request.getMethod().equalsIgnoreCase("OPTIONS"))) {
-			try {
-				chain.doFilter(req, res);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else {
-			System.out.println("Pre-fight");
-			response.setHeader("Access-Control-Allowed-Methods", "POST, GET, DELETE");
-			response.setHeader("Access-Control-Max-Age", "3600");
-			response.setHeader("Access-Control-Allow-Headers", "authorization, content-type, x-auth-token, " +
-                    "access-control-request-headers,access-control-request-method,accept,origin,authorization,x-requested-with");
-			response.setStatus(HttpServletResponse.SC_OK);
-		}
-    }
+	/*@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}*/
+	
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return SecurityUtility.passwordEncoder();
+	}
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.cors().and().csrf().disable().authorizeRequests()
+				.antMatchers(HttpMethod.GET, "/", "/*.html", "/**/*/html", "/**/*/css", "/**/*/js").permitAll()
+				.antMatchers("/securityapi/signup/**").permitAll().antMatchers("/securityapi/signin/**").permitAll()
+				.anyRequest().authenticated().and().exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
+				.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+	}
 }

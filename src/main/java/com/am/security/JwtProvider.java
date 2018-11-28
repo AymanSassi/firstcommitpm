@@ -24,9 +24,6 @@ public class JwtProvider {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
-    @Value("${com.am.security.jwtSecret}")
-    private String jwtSecret;
-
     @Value("${com.am.security.jwtExpiration}")
     private int jwtExpiration;
 
@@ -36,7 +33,7 @@ public class JwtProvider {
 		                .setSubject((userPrincipal.getUsername()))
 		                .setIssuedAt(new Date())
 		                .setExpiration(new Date((new Date()).getTime() + jwtExpiration*1000))
-		                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+		                .signWith(SignatureAlgorithm.HS512, SecurityUtility.JWT_SECRET_RANDOM)
 		                .compact();
         
         return s;
@@ -44,7 +41,7 @@ public class JwtProvider {
     
     public boolean validateJwtToken(String authToken) {
         try {
-            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+            Jwts.parser().setSigningKey(SecurityUtility.JWT_SECRET_RANDOM).parseClaimsJws(authToken);
             return true;
         } catch (SignatureException e) {
             logger.error("Invalid JWT signature -> Message: {} ", e);
@@ -63,7 +60,7 @@ public class JwtProvider {
     
     public String getUserNameFromJwtToken(String token) {
     	return Jwts.parser()
-			                .setSigningKey(jwtSecret)
+			                .setSigningKey(SecurityUtility.JWT_SECRET_RANDOM)
 			                .parseClaimsJws(token)
 			                .getBody().getSubject();
     }
