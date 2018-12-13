@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "trole", catalog = "projectmanagement")
 public class Trole implements java.io.Serializable {
 
-	private int idrole;
+	private long idrole;
 	private String namerole;
 	private int enabledrole;
 	private String descrole;
@@ -33,13 +33,13 @@ public class Trole implements java.io.Serializable {
 	public Trole() {
 	}
 
-	public Trole(int idrole, String namerole, int enabledrole) {
+	public Trole(long idrole, String namerole, int enabledrole) {
 		this.idrole = idrole;
 		this.namerole = namerole;
 		this.enabledrole = enabledrole;
 	}
 
-	public Trole(int idrole, String namerole, int enabledrole, String descrole, Set<Troleview> troleviews,
+	public Trole(long idrole, String namerole, int enabledrole, String descrole, Set<Troleview> troleviews,
 			Set<Tuserrole> tuserroles) {
 		this.idrole = idrole;
 		this.namerole = namerole;
@@ -52,11 +52,11 @@ public class Trole implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idrole", unique = true, nullable = false)
-	public int getIdrole() {
+	public long getIdrole() {
 		return this.idrole;
 	}
 
-	public void setIdrole(int idrole) {
+	public void setIdrole(long idrole) {
 		this.idrole = idrole;
 	}
 

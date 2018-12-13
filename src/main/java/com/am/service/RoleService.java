@@ -9,5 +9,7 @@ public interface RoleService {
 	public List<Trole> findAll();
 	
 	List<Trole> getRolesByUserid(Long userId);
-
+	
+	Trole findByIdrole(Long idrole);
+	
 }

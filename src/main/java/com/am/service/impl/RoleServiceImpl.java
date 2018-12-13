@@ -20,6 +20,11 @@ public class RoleServiceImpl implements RoleService {
 
 	}
 
+	public Trole findByIdrole(Long idrole)
+	{
+		return roleRepository.findByIdrole(idrole);
+	}
+	
 	public List<Trole> getRolesByUserid(Long userId) {
 		return roleRepository.getRolesByUserid(userId);
 	}
