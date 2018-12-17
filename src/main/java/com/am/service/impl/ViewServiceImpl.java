@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.am.entity.Trole;
 import com.am.entity.Tview;
 import com.am.repository.ViewRepository;
 import com.am.service.ViewService;
@@ -25,6 +26,18 @@ public class ViewServiceImpl implements ViewService {
 
 	}
 
+	@Override
+	public Tview findByIdview(Long idview) {
+		return viewRepository.findByIdview(idview);
+		
+	}
 
+	public Tview save(Tview tview) {
+		return viewRepository.save(tview);
+	}
+
+	public void delete(Long idview) {
+		viewRepository.deleteById(idview);
+	}
 
 }

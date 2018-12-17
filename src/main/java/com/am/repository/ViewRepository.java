@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import com.am.entity.Trole;
 import com.am.entity.Tview;
 
 public interface ViewRepository extends CrudRepository<Tview, Long> {
@@ -16,7 +17,6 @@ public interface ViewRepository extends CrudRepository<Tview, Long> {
 	
 	//public List<Tview> findAllByOrderByNameviewDesc();
 	
-
-	
+	Tview findByIdview(Long idview);
 	
 }

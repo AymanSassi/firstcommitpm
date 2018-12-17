@@ -17,7 +17,7 @@ public class UserResource {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/userList", method = RequestMethod.GET)
+	@RequestMapping(value = "/userlist", method = RequestMethod.GET)
 	public List<Tuser> bookList() {
 		return userService.findAll();
 	}
