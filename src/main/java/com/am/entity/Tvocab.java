@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "tvocab", catalog = "projectmanagement")
 public class Tvocab implements java.io.Serializable {
 
-	private int idvocab;
+	private long idvocab;
 	private String codevocab;
 	private String namevocab;
 	private int enabledvocab;
@@ -32,7 +32,7 @@ public class Tvocab implements java.io.Serializable {
 	public Tvocab() {
 	}
 
-	public Tvocab(int idvocab, String codevocab, String namevocab, int enabledvocab, int fixedvocab) {
+	public Tvocab(long idvocab, String codevocab, String namevocab, int enabledvocab, int fixedvocab) {
 		this.idvocab = idvocab;
 		this.codevocab = codevocab;
 		this.namevocab = namevocab;
@@ -40,7 +40,7 @@ public class Tvocab implements java.io.Serializable {
 		this.fixedvocab = fixedvocab;
 	}
 
-	public Tvocab(int idvocab, String codevocab, String namevocab, int enabledvocab, int fixedvocab,
+	public Tvocab(long idvocab, String codevocab, String namevocab, int enabledvocab, int fixedvocab,
 			Set<Tvocabword> tvocabwords) {
 		this.idvocab = idvocab;
 		this.codevocab = codevocab;
@@ -53,11 +53,11 @@ public class Tvocab implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idvocab", unique = true, nullable = false)
-	public int getIdvocab() {
+	public long getIdvocab() {
 		return this.idvocab;
 	}
 
-	public void setIdvocab(int idvocab) {
+	public void setIdvocab(long idvocab) {
 		this.idvocab = idvocab;
 	}
 
