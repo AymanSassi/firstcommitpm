@@ -24,12 +24,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "tproductversion", catalog = "projectmanagement")
 public class Tproductversion implements java.io.Serializable {
 
-	private int idproductversion;
+	private long idproductversion;
 	private String nameversion;
-	private Date cdateversion;
+	private Date dateversion;
 	private int numberversion;
 	private int enabledversion;
-	private int idproduct;
+	private long idproduct;
 	@JsonIgnore
 	private Set<Tticket> ttickets = new HashSet<Tticket>(0);
 	@JsonIgnore
@@ -38,21 +38,21 @@ public class Tproductversion implements java.io.Serializable {
 	public Tproductversion() {
 	}
 
-	public Tproductversion(int idproductversion, String nameversion, Date cdateversion, int numberversion,
-			int enabledversion, int idproduct) {
+	public Tproductversion(long idproductversion, String nameversion, Date dateversion, int numberversion,
+			int enabledversion, long idproduct) {
 		this.idproductversion = idproductversion;
 		this.nameversion = nameversion;
-		this.cdateversion = cdateversion;
+		this.dateversion = dateversion;
 		this.numberversion = numberversion;
 		this.enabledversion = enabledversion;
 		this.idproduct = idproduct;
 	}
 
-	public Tproductversion(int idproductversion, String nameversion, Date cdateversion, int numberversion,
-			int enabledversion, int idproduct, Set<Tticket> ttickets, Set<Ttickoprodversresol> ttickoprodversresols) {
+	public Tproductversion(long idproductversion, String nameversion, Date dateversion, int numberversion,
+			int enabledversion, long idproduct, Set<Tticket> ttickets, Set<Ttickoprodversresol> ttickoprodversresols) {
 		this.idproductversion = idproductversion;
 		this.nameversion = nameversion;
-		this.cdateversion = cdateversion;
+		this.dateversion = dateversion;
 		this.numberversion = numberversion;
 		this.enabledversion = enabledversion;
 		this.idproduct = idproduct;
@@ -63,11 +63,11 @@ public class Tproductversion implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idproductversion", unique = true, nullable = false)
-	public int getIdproductversion() {
+	public long getIdproductversion() {
 		return this.idproductversion;
 	}
 
-	public void setIdproductversion(int idproductversion) {
+	public void setIdproductversion(long idproductversion) {
 		this.idproductversion = idproductversion;
 	}
 
@@ -81,13 +81,13 @@ public class Tproductversion implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "cdateversion", nullable = false, length = 10)
-	public Date getCdateversion() {
-		return this.cdateversion;
+	@Column(name = "dateversion", nullable = false, length = 10)
+	public Date getdateversion() {
+		return this.dateversion;
 	}
 
-	public void setCdateversion(Date cdateversion) {
-		this.cdateversion = cdateversion;
+	public void setdateversion(Date dateversion) {
+		this.dateversion = dateversion;
 	}
 
 	@Column(name = "numberversion", nullable = false)
@@ -109,11 +109,11 @@ public class Tproductversion implements java.io.Serializable {
 	}
 
 	@Column(name = "idproduct", nullable = false)
-	public int getIdproduct() {
+	public long getIdproduct() {
 		return this.idproduct;
 	}
 
-	public void setIdproduct(int idproduct) {
+	public void setIdproduct(long idproduct) {
 		this.idproduct = idproduct;
 	}
 
