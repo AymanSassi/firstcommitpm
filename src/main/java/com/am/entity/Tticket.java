@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "tticket", catalog = "projectmanagement")
 public class Tticket implements java.io.Serializable {
 
-	private int idticket;
+	private long idticket;
 	private Tproduct tproduct;
 	private Tproductversion tproductversion;
 	private Treporter treporter;
@@ -41,7 +41,7 @@ public class Tticket implements java.io.Serializable {
 	public Tticket() {
 	}
 
-	public Tticket(int idticket, Tproduct tproduct, Tproductversion tproductversion, Treporter treporter,
+	public Tticket(long idticket, Tproduct tproduct, Tproductversion tproductversion, Treporter treporter,
 			Tvocabword tvocabwordByVocticketstatus, Tvocabword tvocabwordByVocticketresol, Date dateticket) {
 		this.idticket = idticket;
 		this.tproduct = tproduct;
@@ -52,7 +52,7 @@ public class Tticket implements java.io.Serializable {
 		this.dateticket = dateticket;
 	}
 
-	public Tticket(int idticket, Tproduct tproduct, Tproductversion tproductversion, Treporter treporter,
+	public Tticket(long idticket, Tproduct tproduct, Tproductversion tproductversion, Treporter treporter,
 			Tvocabword tvocabwordByVocticketstatus, Tvocabword tvocabwordByVocticketresol, Date dateticket,
 			String externalcodea, String summary, Set<Ttickoprodversresol> ttickoprodversresols) {
 		this.idticket = idticket;
@@ -70,11 +70,11 @@ public class Tticket implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idticket", unique = true, nullable = false)
-	public int getIdticket() {
+	public long getIdticket() {
 		return this.idticket;
 	}
 
-	public void setIdticket(int idticket) {
+	public void setIdticket(long idticket) {
 		this.idticket = idticket;
 	}
 

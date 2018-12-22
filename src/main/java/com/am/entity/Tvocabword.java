@@ -23,14 +23,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "tvocabword", catalog = "projectmanagement")
 public class Tvocabword implements java.io.Serializable {
 
-	private int idvocabword;
+	private long idvocabword;
 	private Tvocab tvocab;
 	private String codeword;
 	private String icodeword;
 	private String nameword;
 	private int isinternal;
 	private int enabledvocab;
-	private Integer rownumber;
+	private int rownumber;
 	@JsonIgnore
 	private Set<Tticket> tticketsForVocticketstatus = new HashSet<Tticket>(0);
 	@JsonIgnore
@@ -41,7 +41,7 @@ public class Tvocabword implements java.io.Serializable {
 	public Tvocabword() {
 	}
 
-	public Tvocabword(int idvocabword, Tvocab tvocab, String codeword, String icodeword, String nameword,
+	public Tvocabword(long idvocabword, Tvocab tvocab, String codeword, String icodeword, String nameword,
 			int isinternal, int enabledvocab) {
 		this.idvocabword = idvocabword;
 		this.tvocab = tvocab;
@@ -52,7 +52,7 @@ public class Tvocabword implements java.io.Serializable {
 		this.enabledvocab = enabledvocab;
 	}
 
-	public Tvocabword(int idvocabword, Tvocab tvocab, String codeword, String icodeword, String nameword,
+	public Tvocabword(long idvocabword, Tvocab tvocab, String codeword, String icodeword, String nameword,
 			int isinternal, int enabledvocab, Integer rownumber, Set<Tticket> tticketsForVocticketstatus,
 			Set<Tticket> tticketsForVocticketresol, Set<Ttickoprodversresol> ttickoprodversresols) {
 		this.idvocabword = idvocabword;
@@ -71,7 +71,7 @@ public class Tvocabword implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idvocabword", unique = true, nullable = false)
-	public int getIdvocabword() {
+	public long getIdvocabword() {
 		return this.idvocabword;
 	}
 

@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "treporter", catalog = "projectmanagement")
 public class Treporter implements java.io.Serializable {
 
-	private int idreporter;
+	private long idreporter;
 	private Tperson tperson;
 	private int enabledreporter;
 	private int isinternal;
@@ -33,14 +33,14 @@ public class Treporter implements java.io.Serializable {
 	public Treporter() {
 	}
 
-	public Treporter(int idreporter, Tperson tperson, int enabledreporter, int isinternal) {
+	public Treporter(long idreporter, Tperson tperson, int enabledreporter, int isinternal) {
 		this.idreporter = idreporter;
 		this.tperson = tperson;
 		this.enabledreporter = enabledreporter;
 		this.isinternal = isinternal;
 	}
 
-	public Treporter(int idreporter, Tperson tperson, int enabledreporter, int isinternal, Set<Tticket> ttickets) {
+	public Treporter(long idreporter, Tperson tperson, int enabledreporter, int isinternal, Set<Tticket> ttickets) {
 		this.idreporter = idreporter;
 		this.tperson = tperson;
 		this.enabledreporter = enabledreporter;
@@ -51,11 +51,11 @@ public class Treporter implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idreporter", unique = true, nullable = false)
-	public int getIdreporter() {
+	public long getIdreporter() {
 		return this.idreporter;
 	}
 
-	public void setIdreporter(int idreporter) {
+	public void setIdreporter(long idreporter) {
 		this.idreporter = idreporter;
 	}
 

@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "tperson", catalog = "projectmanagement")
 public class Tperson implements java.io.Serializable {
 
-	private int idperson;
+	private long idperson;
 	private String nameperson;
 	private String emailperson;
 	@JsonIgnore
@@ -36,11 +36,11 @@ public class Tperson implements java.io.Serializable {
 	public Tperson() {
 	}
 
-	public Tperson(int idperson) {
+	public Tperson(long idperson) {
 		this.idperson = idperson;
 	}
 
-	public Tperson(int idperson, String nameperson, String emailperson, Set<Treporter> treporters, Set<Tuser> tusers) {
+	public Tperson(long idperson, String nameperson, String emailperson, Set<Treporter> treporters, Set<Tuser> tusers) {
 		this.idperson = idperson;
 		this.nameperson = nameperson;
 		this.emailperson = emailperson;
@@ -57,11 +57,11 @@ public class Tperson implements java.io.Serializable {
 	                valueColumnName="value",                            
 	                allocationSize=100)*/ 
 	@Column(name = "idperson", unique = true, nullable = false)
-	public int getIdperson() {
+	public long getIdperson() {
 		return this.idperson;
 	}
 
-	public void setIdperson(int idperson) {
+	public void setIdperson(long idperson) {
 		this.idperson = idperson;
 	}
 
