@@ -53,7 +53,7 @@ public class Tvocabword implements java.io.Serializable {
 	}
 
 	public Tvocabword(long idvocabword, Tvocab tvocab, String codeword, String icodeword, String nameword,
-			int isinternal, int enabledvocab, Integer rownumber, Set<Tticket> tticketsForVocticketstatus,
+			int isinternal, int enabledvocab, int rownumber, Set<Tticket> tticketsForVocticketstatus,
 			Set<Tticket> tticketsForVocticketresol, Set<Ttickoprodversresol> ttickoprodversresols) {
 		this.idvocabword = idvocabword;
 		this.tvocab = tvocab;
@@ -135,11 +135,11 @@ public class Tvocabword implements java.io.Serializable {
 	}
 
 	@Column(name = "rownumber")
-	public Integer getRownumber() {
+	public int getRownumber() {
 		return this.rownumber;
 	}
 
-	public void setRownumber(Integer rownumber) {
+	public void setRownumber(int rownumber) {
 		this.rownumber = rownumber;
 	}
 
