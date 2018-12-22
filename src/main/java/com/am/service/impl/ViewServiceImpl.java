@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.am.entity.Trole;
 import com.am.entity.Tview;
 import com.am.repository.ViewRepository;
 import com.am.service.ViewService;

@@ -32,13 +32,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Table(name = "tuser", catalog = "projectmanagement")
 public class Tuser implements UserDetails,java.io.Serializable {
 
-	private Integer iduser;
+	private long iduser;
 	private Tperson tperson;
 	private String loginuser;
-	@JsonIgnore
 	private String pwduser;
 	private int enableduser;
-	@JsonIgnore
 	private Set<Tuserrole> tuserroles=new HashSet<Tuserrole>(0);
 	
 	public Tuser() {
@@ -61,11 +59,11 @@ public class Tuser implements UserDetails,java.io.Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "iduser", unique = true, nullable = false)
 	
-	public Integer getIduser() {
+	public long getIduser() {
 		return this.iduser;
 	}
 
-	public void setIduser(Integer iduser) {
+	public void setIduser(long iduser) {
 		this.iduser = iduser;
 	}
 
@@ -92,6 +90,7 @@ public class Tuser implements UserDetails,java.io.Serializable {
 	}
 
 	@Column(name = "pwduser",  length = 120)
+	@JsonIgnore
 	public String getPwduser() {
 		return this.pwduser;
 	}
@@ -138,6 +137,7 @@ public class Tuser implements UserDetails,java.io.Serializable {
 
 	@Override
 	@Transient
+	@JsonIgnore
 	public String getPassword() {
 		return pwduser;
 	}

@@ -85,6 +85,7 @@ public class Tview implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tview")
+	@JsonIgnore
 	public Set<Troleview> getTroleviews() {
 		return this.troleviews;
 	}

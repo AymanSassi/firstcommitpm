@@ -23,7 +23,7 @@ public class Tproduct implements java.io.Serializable {
 
 	private long idproduct;
 	private String nameproduct;
-	private Integer enabledproduct;
+	private int enabledproduct;
 	@JsonIgnore
 	private Set<Tticket> ttickets = new HashSet<Tticket>(0);
 
@@ -34,7 +34,7 @@ public class Tproduct implements java.io.Serializable {
 		this.idproduct = idproduct;
 	}
 
-	public Tproduct(long idproduct, String nameproduct, Integer enabledproduct, Set<Tticket> ttickets) {
+	public Tproduct(long idproduct, String nameproduct, int enabledproduct, Set<Tticket> ttickets) {
 		this.idproduct = idproduct;
 		this.nameproduct = nameproduct;
 		this.enabledproduct = enabledproduct;
@@ -62,11 +62,11 @@ public class Tproduct implements java.io.Serializable {
 	}
 
 	@Column(name = "enabledproduct")
-	public Integer getEnabledproduct() {
+	public int getEnabledproduct() {
 		return this.enabledproduct;
 	}
 
-	public void setEnabledproduct(Integer enabledproduct) {
+	public void setEnabledproduct(int enabledproduct) {
 		this.enabledproduct = enabledproduct;
 	}
 

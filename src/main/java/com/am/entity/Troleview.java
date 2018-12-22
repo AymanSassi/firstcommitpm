@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @Table(name = "troleview", catalog = "projectmanagement")
 public class Troleview implements java.io.Serializable {
 
-	private int idroleview;
+	private long idroleview;
 	private Tview tview;
 	private Trole trole;
 	private int cview;
@@ -29,7 +29,7 @@ public class Troleview implements java.io.Serializable {
 	public Troleview() {
 	}
 
-	public Troleview(int idroleview, Tview tview, Trole trole, int cview, int rview,
+	public Troleview(long idroleview, Tview tview, Trole trole, int cview, int rview,
 			int uview, int dview) {
 		this.idroleview = idroleview;
 		this.tview = tview;
@@ -43,11 +43,11 @@ public class Troleview implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idroleview", unique = true, nullable = false)
-	public int getIdroleview() {
+	public long getIdroleview() {
 		return this.idroleview;
 	}
 
-	public void setIdroleview(int idroleview) {
+	public void setIdroleview(long idroleview) {
 		this.idroleview = idroleview;
 	}
 

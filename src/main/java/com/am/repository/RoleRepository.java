@@ -12,10 +12,10 @@ public interface RoleRepository extends CrudRepository<Trole, Long> {
 
 	Trole findByNamerole(String namerole);
 	
-	Trole findByIdrole(Long idrole);
+	Trole findByIdrole(long idrole);
 
 	@Query("select r from Tuserrole ur JOIN ur.tuser u JOIN ur.trole r where u.iduser=?1 and r.enabledrole=1")
-	List<Trole> getRolesByUserid(Long userId);
+	List<Trole> getRolesByUserid(long userId);
 	
 	
 }

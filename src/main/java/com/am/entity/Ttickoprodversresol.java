@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @Table(name = "ttickoprodversresol", catalog = "projectmanagement")
 public class Ttickoprodversresol implements java.io.Serializable {
 
-	private int idtickoprodversresol;
+	private long idtickoprodversresol;
 	private Tproductversion tproductversion;
 	private Tticket tticket;
 	private Tvocabword tvocabword;
@@ -26,7 +26,7 @@ public class Ttickoprodversresol implements java.io.Serializable {
 	public Ttickoprodversresol() {
 	}
 
-	public Ttickoprodversresol(int idtickoprodversresol, Tproductversion tproductversion, Tticket tticket,
+	public Ttickoprodversresol(long idtickoprodversresol, Tproductversion tproductversion, Tticket tticket,
 			Tvocabword tvocabword) {
 		this.idtickoprodversresol = idtickoprodversresol;
 		this.tproductversion = tproductversion;
@@ -37,11 +37,11 @@ public class Ttickoprodversresol implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idtickoprodversresol", unique = true, nullable = false)
-	public int getIdtickoprodversresol() {
+	public long getIdtickoprodversresol() {
 		return this.idtickoprodversresol;
 	}
 
-	public void setIdtickoprodversresol(int idtickoprodversresol) {
+	public void setIdtickoprodversresol(long idtickoprodversresol) {
 		this.idtickoprodversresol = idtickoprodversresol;
 	}
 

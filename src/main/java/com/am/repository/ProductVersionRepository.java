@@ -14,6 +14,6 @@ public interface ProductVersionRepository extends CrudRepository<Tproductversion
 	@Query("select v from Tproductversion v order by v.nameversion")
 	List<Tproductversion> findAll();
 	
-	Tproductversion findByIdproductversion(Long idproductversion);
+	Tproductversion findByIdproductversion(long idproductversion);
 	
 }
