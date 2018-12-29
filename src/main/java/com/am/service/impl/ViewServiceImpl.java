@@ -39,4 +39,9 @@ public class ViewServiceImpl implements ViewService {
 		viewRepository.deleteById(idview);
 	}
 
+	@Override
+	public Tview findByProgview(String progview) {
+		return viewRepository.findByProgview(progview);
+	}
+
 }

@@ -17,9 +17,6 @@ import com.am.entity.Tproduct;
 import com.am.entity.Tproductversion;
 import com.am.service.ProductVersionService;
 
-
-
-
 //http://localhost:8181/user/userList
 @RestController
 @RequestMapping("/productversion")

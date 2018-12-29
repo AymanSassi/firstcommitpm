@@ -22,10 +22,12 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
 
@@ -33,11 +35,13 @@ import com.am.entity.Tperson;
 import com.am.entity.Treporter;
 import com.am.entity.Trole;
 import com.am.entity.Tuser;
+import com.am.entity.Tusersignin;
 import com.am.message.request.LoginForm;
 import com.am.message.request.SignUpForm;
 import com.am.repository.PersonRepository;
 import com.am.repository.RoleRepository;
 import com.am.repository.UserRepository;
+import com.am.repository.UsersigninRepository;
 import com.am.security.JwtProvider;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -58,6 +62,9 @@ public class SecurityApi {
 	RoleRepository roleRepository;
 
 	@Autowired
+	UsersigninRepository usersigninRepository;
+
+	@Autowired
 	PasswordEncoder encoder;
 
 	@Autowired
@@ -67,12 +74,17 @@ public class SecurityApi {
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
 
 		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+				new UsernamePasswordAuthenticationToken(loginRequest.getLogin(), loginRequest.getPassword()));
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-
+		Tuser userPrincipal = (Tuser) authentication.getPrincipal();
 		String jwt = jwtProvider.generateJwtToken(authentication);
-		return ResponseEntity.ok(Collections.singletonMap("Token",jwt));
+		Tusersignin tusersignin = new Tusersignin();
+		tusersignin.setToken(jwt);
+		tusersignin.setTuser(userPrincipal);
+		tusersignin=usersigninRepository.save(tusersignin);
+		//return ResponseEntity.ok(Collections.singletonMap("Token", jwt));
+		return ResponseEntity.ok(tusersignin);
 	}
 
 	@PostMapping("/signup")
@@ -126,13 +138,15 @@ public class SecurityApi {
 		return ResponseEntity.ok().body("User registered successfully!");
 	}
 
-	@RequestMapping(value = "/logout", method = RequestMethod.POST)
-	public Map<String, String> logout() {
+	@RequestMapping(value = "/logout/{id}", method = RequestMethod.DELETE)
+	@ResponseBody
+	@CrossOrigin
+	public void delete(@PathVariable("id") long id) {
 		SecurityContextHolder.clearContext();
 		System.out.println("Logout...");
-		return Collections.singletonMap("OK", "Logout");
+		usersigninRepository.deleteById(id);
 	}
-
+	
 	@RequestMapping("/token")
 	public Map<String, String> token(HttpSession session, HttpServletRequest request) {
 		System.out.println("1-remoteHost=" + request.getRemoteHost());
@@ -169,8 +183,8 @@ public class SecurityApi {
 		if (principal != null) {
 			User loginedUser = (User) ((Authentication) principal).getPrincipal();
 
-			//String userInfo = WebUtils.toString(loginedUser);
-			String userInfo = null;//WebUtils.toString(loginedUser);
+			// String userInfo = WebUtils.toString(loginedUser);
+			String userInfo = null;// WebUtils.toString(loginedUser);
 
 			// model.addAttribute("userInfo", userInfo);
 

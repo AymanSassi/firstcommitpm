@@ -73,5 +73,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		Hibernate.initialize(user.getAuthorities());
 		return user;
 	}
+	
+	
 
 }

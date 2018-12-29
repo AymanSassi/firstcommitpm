@@ -22,6 +22,7 @@ import javax.persistence.Transient;
 
 import com.am.security.Authority;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,6 +39,7 @@ public class Tuser implements UserDetails,java.io.Serializable {
 	private String pwduser;
 	private int enableduser;
 	private Set<Tuserrole> tuserroles=new HashSet<Tuserrole>(0);
+	private Set<Tusersignin> tusersignins=new HashSet<Tusersignin>(0);
 	
 	public Tuser() {
 		
@@ -58,7 +60,6 @@ public class Tuser implements UserDetails,java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "iduser", unique = true, nullable = false)
-	
 	public long getIduser() {
 		return this.iduser;
 	}
@@ -69,7 +70,7 @@ public class Tuser implements UserDetails,java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "idperson", nullable = false)
-	@JsonIgnore
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	public Tperson getTperson() {
 		return this.tperson;
 	}
@@ -126,6 +127,17 @@ public class Tuser implements UserDetails,java.io.Serializable {
 		this.tuserroles = tuserroles;
 	}
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tuser")
+	@JsonIgnore
+	public Set<Tusersignin> getTusersignins() {
+		return this.tusersignins;
+	}
+
+	public void setTusersignins(Set<Tusersignin> tusersignins) {
+		this.tusersignins = tusersignins;
+	}
+
+	
 	@Override
 	@Transient
 	public Collection<? extends GrantedAuthority> getAuthorities() {
