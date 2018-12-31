@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,13 +30,19 @@ public class ViewResource {
 	public List<Tview> viewList() {
 		return viewService.findAll();
 	}
-	
-		
+			
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	@CrossOrigin
 	public Tview getView(@PathVariable("id") long id) {
 		return viewService.findByIdview(id);
+	}
+	
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	@ResponseBody
+	@CrossOrigin
+	public Tview getView(@RequestParam("progview") String progView) {
+		return viewService.findByProgview(progView);
 	}	
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)

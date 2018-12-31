@@ -32,7 +32,4 @@ public class RoleResource {
 	public Trole getrole(@PathVariable("id") long id) {
 		return roleService.findByIdrole(id);
 	}
-	
-	
-
 }

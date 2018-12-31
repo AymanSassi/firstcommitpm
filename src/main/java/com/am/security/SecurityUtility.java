@@ -12,7 +12,11 @@ public class SecurityUtility {
 	
 	private static String JWT_SECRET=Base64.getEncoder().encodeToString("efkldkjfilmdmdsk+".getBytes()); //Salt should be protected carefully
 	
-	static String JWT_SECRET_RANDOM=randomPassword();
+	//Pour production
+	//static String JWT_SECRET_RANDOM=randomPassword();
+
+	//Pour developpement
+	static String JWT_SECRET_RANDOM="1919SKSSJS?S?SLZ";
 		
 	public static BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder(12, new SecureRandom(JWT_SECRET.getBytes()));

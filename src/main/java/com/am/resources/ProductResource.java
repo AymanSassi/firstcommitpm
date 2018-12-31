@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.am.entity.Tproduct;
 import com.am.service.ProductService;
 
-
-
-
 //http://localhost:8181/user/userList
 @RestController
 @RequestMapping("/product")

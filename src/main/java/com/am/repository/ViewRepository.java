@@ -18,4 +18,5 @@ public interface ViewRepository extends CrudRepository<Tview, Long> {
 	
 	Tview findByIdview(long idview);
 	
+	Tview findByProgview(String progview);
 }
