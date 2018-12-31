@@ -16,6 +16,13 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	private ProductRepository productRepository;
+	
+	/*public List<Tproduct> findQuery(Tproduct tproduct)
+	{
+		productRepository.findAll();
+		return null;
+		
+	}*/
 
 	public List<Tproduct> findAll() {
 		

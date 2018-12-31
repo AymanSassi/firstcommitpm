@@ -11,6 +11,8 @@ public interface ProductService {
 	
 	public List<Tproduct> findAll();
 	
+	//public List<Tproduct> findQuery(Tproduct tproduct);
+		
 	Tproduct findByIdproduct(Long idproduct);
 	
 	public Tproduct save(Tproduct tproduct);

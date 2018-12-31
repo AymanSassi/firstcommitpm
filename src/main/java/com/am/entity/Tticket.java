@@ -136,8 +136,8 @@ public class Tticket implements java.io.Serializable {
 		this.vocticketresol = vocticketresol;
 	}
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "dateticket", nullable = false, length = 19)
+	@Temporal(TemporalType.DATE)
+	@Column(name = "dateticket", nullable = false, length = 10)
 	public Date getDateticket() {
 		return this.dateticket;
 	}

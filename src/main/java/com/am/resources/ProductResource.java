@@ -31,7 +31,12 @@ public class ProductResource {
 	public List<Tproduct> productList() {
 		return productService.findAll();
 	}
-	
+	//commented
+	/*@RequestMapping(value = "/productlistquery", method = RequestMethod.GET)
+	@CrossOrigin
+	public List<Tproduct> productQuery(@RequestBody Tproduct tproduct) {
+		return productService.findQuery(tproduct);
+	}*/
 		
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
@@ -43,8 +48,8 @@ public class ProductResource {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
 	@CrossOrigin
-	public ResponseEntity<Tproduct> save(@RequestBody Tproduct Tproduct) {
-		Tproduct tproductsave=productService.save(Tproduct);
+	public ResponseEntity<Tproduct> save(@RequestBody Tproduct tproduct) {
+		Tproduct tproductsave=productService.save(tproduct);
 		return new ResponseEntity<Tproduct>(tproductsave, HttpStatus.OK);
 	}
 	
