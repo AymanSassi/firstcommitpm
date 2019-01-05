@@ -25,18 +25,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 //@JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class Tvocab implements java.io.Serializable {
 
-	private long idvocab;
+	private Long idvocab;
 	private String codevocab;
 	private String namevocab;
-	private int enabledvocab;
-	private int fixedvocab;
+	private Integer enabledvocab;
+	private Integer fixedvocab;
 	@JsonIgnore
 	private Set<Tvocabword> tvocabwords = new HashSet<Tvocabword>(0);
 
 	public Tvocab() {
 	}
 
-	public Tvocab(long idvocab, String codevocab, String namevocab, int enabledvocab, int fixedvocab) {
+	public Tvocab(Long idvocab, String codevocab, String namevocab, Integer enabledvocab, Integer fixedvocab) {
 		this.idvocab = idvocab;
 		this.codevocab = codevocab;
 		this.namevocab = namevocab;
@@ -44,7 +44,7 @@ public class Tvocab implements java.io.Serializable {
 		this.fixedvocab = fixedvocab;
 	}
 
-	public Tvocab(long idvocab, String codevocab, String namevocab, int enabledvocab, int fixedvocab,
+	public Tvocab(Long idvocab, String codevocab, String namevocab, Integer enabledvocab, Integer fixedvocab,
 			Set<Tvocabword> tvocabwords) {
 		this.idvocab = idvocab;
 		this.codevocab = codevocab;
@@ -57,11 +57,11 @@ public class Tvocab implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idvocab", unique = true, nullable = false)
-	public long getIdvocab() {
+	public Long getIdvocab() {
 		return this.idvocab;
 	}
 
-	public void setIdvocab(long idvocab) {
+	public void setIdvocab(Long idvocab) {
 		this.idvocab = idvocab;
 	}
 
@@ -84,20 +84,20 @@ public class Tvocab implements java.io.Serializable {
 	}
 
 	@Column(name = "enabledvocab", nullable = false)
-	public int getEnabledvocab() {
+	public Integer getEnabledvocab() {
 		return this.enabledvocab;
 	}
 
-	public void setEnabledvocab(int enabledvocab) {
+	public void setEnabledvocab(Integer enabledvocab) {
 		this.enabledvocab = enabledvocab;
 	}
 
 	@Column(name = "fixedvocab", nullable = false)
-	public int getFixedvocab() {
+	public Integer getFixedvocab() {
 		return this.fixedvocab;
 	}
 
-	public void setFixedvocab(int fixedvocab) {
+	public void setFixedvocab(Integer fixedvocab) {
 		this.fixedvocab = fixedvocab;
 	}
 

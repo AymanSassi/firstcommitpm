@@ -25,24 +25,24 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "treporter", catalog = "projectmanagement")
 public class Treporter implements java.io.Serializable {
 
-	private long idreporter;
+	private Long idreporter;
 	private Tperson tperson;
-	private int enabledreporter;
-	private int isinternal;
+	private Integer enabledreporter;
+	private Integer isinternal;
 	@JsonIgnore
 	private Set<Tticket> ttickets = new HashSet<Tticket>(0);
 
 	public Treporter() {
 	}
 
-	public Treporter(long idreporter, Tperson tperson, int enabledreporter, int isinternal) {
+	public Treporter(Long idreporter, Tperson tperson, Integer enabledreporter, Integer isinternal) {
 		this.idreporter = idreporter;
 		this.tperson = tperson;
 		this.enabledreporter = enabledreporter;
 		this.isinternal = isinternal;
 	}
 
-	public Treporter(long idreporter, Tperson tperson, int enabledreporter, int isinternal, Set<Tticket> ttickets) {
+	public Treporter(Long idreporter, Tperson tperson, Integer enabledreporter, Integer isinternal, Set<Tticket> ttickets) {
 		this.idreporter = idreporter;
 		this.tperson = tperson;
 		this.enabledreporter = enabledreporter;
@@ -53,11 +53,11 @@ public class Treporter implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idreporter", unique = true, nullable = false)
-	public long getIdreporter() {
+	public Long getIdreporter() {
 		return this.idreporter;
 	}
 
-	public void setIdreporter(long idreporter) {
+	public void setIdreporter(Long idreporter) {
 		this.idreporter = idreporter;
 	}
 
@@ -73,20 +73,20 @@ public class Treporter implements java.io.Serializable {
 	}
 
 	@Column(name = "enabledreporter", nullable = false)
-	public int getEnabledreporter() {
+	public Integer getEnabledreporter() {
 		return this.enabledreporter;
 	}
 
-	public void setEnabledreporter(int enabledreporter) {
+	public void setEnabledreporter(Integer enabledreporter) {
 		this.enabledreporter = enabledreporter;
 	}
 
 	@Column(name = "isinternal", nullable = false)
-	public int getIsinternal() {
+	public Integer getIsinternal() {
 		return this.isinternal;
 	}
 
-	public void setIsinternal(int isinternal) {
+	public void setIsinternal(Integer isinternal) {
 		this.isinternal = isinternal;
 	}
 

@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.am.entity.Tticket;
-import com.am.entityfilter.SearchCriteria;
-import com.am.entityfilter.TicketSpecification;
 import com.am.service.TicketService;
 
 //http://localhost:8181/user/userList
@@ -28,10 +26,6 @@ public class TicketResource {
 	@RequestMapping(value = "/ticketlist", method = RequestMethod.GET)
 	@CrossOrigin
 	public List<Tticket> ticketList() {
-		//return ticketService.findAll();
-		//JpaSpecificationExecutor
-		TicketSpecification spec = 
-	      new TicketSpecification(new SearchCriteria("idticket", ":", "10"));
 		return ticketService.findAll();
 	}
 	

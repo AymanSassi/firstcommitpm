@@ -33,7 +33,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Table(name = "tuser", catalog = "projectmanagement")
 public class Tuser implements UserDetails,java.io.Serializable {
 
-	private long iduser;
+	private Long iduser;
 	private Tperson tperson;
 	private String loginuser;
 	private String pwduser;
@@ -60,11 +60,11 @@ public class Tuser implements UserDetails,java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "iduser", unique = true, nullable = false)
-	public long getIduser() {
+	public Long getIduser() {
 		return this.iduser;
 	}
 
-	public void setIduser(long iduser) {
+	public void setIduser(Long iduser) {
 		this.iduser = iduser;
 	}
 

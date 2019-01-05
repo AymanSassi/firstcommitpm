@@ -21,20 +21,20 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "tproduct", catalog = "projectmanagement")
 public class Tproduct implements java.io.Serializable {
 
-	private long idproduct;
+	private Long idproduct;
 	private String nameproduct;
-	private int enabledproduct;
+	private Integer enabledproduct;
 	@JsonIgnore
 	private Set<Tticket> ttickets = new HashSet<Tticket>(0);
 
 	public Tproduct() {
 	}
 
-	public Tproduct(long idproduct) {
+	public Tproduct(Long idproduct) {
 		this.idproduct = idproduct;
 	}
 
-	public Tproduct(long idproduct, String nameproduct, int enabledproduct, Set<Tticket> ttickets) {
+	public Tproduct(Long idproduct, String nameproduct, Integer enabledproduct, Set<Tticket> ttickets) {
 		this.idproduct = idproduct;
 		this.nameproduct = nameproduct;
 		this.enabledproduct = enabledproduct;
@@ -44,11 +44,11 @@ public class Tproduct implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idproduct", unique = true, nullable = false)
-	public long getIdproduct() {
+	public Long getIdproduct() {
 		return this.idproduct;
 	}
 
-	public void setIdproduct(long idproduct) {
+	public void setIdproduct(Long idproduct) {
 		this.idproduct = idproduct;
 	}
 
@@ -62,11 +62,11 @@ public class Tproduct implements java.io.Serializable {
 	}
 
 	@Column(name = "enabledproduct")
-	public int getEnabledproduct() {
+	public Integer getEnabledproduct() {
 		return this.enabledproduct;
 	}
 
-	public void setEnabledproduct(int enabledproduct) {
+	public void setEnabledproduct(Integer enabledproduct) {
 		this.enabledproduct = enabledproduct;
 	}
 

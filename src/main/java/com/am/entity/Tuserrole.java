@@ -18,14 +18,14 @@ import javax.persistence.Table;
 @Table(name = "tuserrole", catalog = "projectmanagement")
 public class Tuserrole implements java.io.Serializable {
 
-	private long iduserrole;
+	private Long iduserrole;
 	private Trole trole;
 	private Tuser tuser;
 
 	public Tuserrole() {
 	}
 
-	public Tuserrole(long iduserrole, Trole trole, Tuser tuser) {
+	public Tuserrole(Long iduserrole, Trole trole, Tuser tuser) {
 		this.iduserrole = iduserrole;
 		this.trole = trole;
 		this.tuser = tuser;
@@ -34,11 +34,11 @@ public class Tuserrole implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "iduserrole", unique = true, nullable = false)
-	public long getIduserrole() {
+	public Long getIduserrole() {
 		return this.iduserrole;
 	}
 
-	public void setIduserrole(long iduserrole) {
+	public void setIduserrole(Long iduserrole) {
 		this.iduserrole = iduserrole;
 	}
 

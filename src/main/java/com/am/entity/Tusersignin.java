@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "tusersignin", catalog = "projectmanagement")
 public class Tusersignin implements java.io.Serializable {
 
-	private long idusersignin;
+	private Long idusersignin;
 	private String token;
 	public String getToken() {
 		return token;
@@ -34,7 +34,7 @@ public class Tusersignin implements java.io.Serializable {
 	
 
 
-	public void setIdusersignin(long idusersignin) {
+	public void setIdusersignin(Long idusersignin) {
 		this.idusersignin = idusersignin;
 	}
 
@@ -44,7 +44,7 @@ public class Tusersignin implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idusersignin", unique = true, nullable = false)
-	public long getIdusersignin() {
+	public Long getIdusersignin() {
 		return idusersignin;
 	}
 	

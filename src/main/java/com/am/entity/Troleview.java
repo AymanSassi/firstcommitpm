@@ -18,19 +18,19 @@ import javax.persistence.Table;
 @Table(name = "troleview", catalog = "projectmanagement")
 public class Troleview implements java.io.Serializable {
 
-	private long idroleview;
+	private Long idroleview;
 	private Tview tview;
 	private Trole trole;
-	private int cview;
-	private int rview;
-	private int uview;
-	private int dview;
+	private Integer cview;
+	private Integer rview;
+	private Integer uview;
+	private Integer dview;
 
 	public Troleview() {
 	}
 
-	public Troleview(long idroleview, Tview tview, Trole trole, int cview, int rview,
-			int uview, int dview) {
+	public Troleview(Long idroleview, Tview tview, Trole trole, Integer cview, Integer rview,
+			Integer uview, Integer dview) {
 		this.idroleview = idroleview;
 		this.tview = tview;
 		this.trole = trole;
@@ -43,11 +43,11 @@ public class Troleview implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idroleview", unique = true, nullable = false)
-	public long getIdroleview() {
+	public Long getIdroleview() {
 		return this.idroleview;
 	}
 
-	public void setIdroleview(long idroleview) {
+	public void setIdroleview(Long idroleview) {
 		this.idroleview = idroleview;
 	}
 
@@ -72,38 +72,38 @@ public class Troleview implements java.io.Serializable {
 	}
 
 	@Column(name = "cview", nullable = false)
-	public int getCview() {
+	public Integer getCview() {
 		return this.cview;
 	}
 
-	public void setCview(int cview) {
+	public void setCview(Integer cview) {
 		this.cview = cview;
 	}
 
 	@Column(name = "rview", nullable = false)
-	public int getRview() {
+	public Integer getRview() {
 		return this.rview;
 	}
 
-	public void setRview(int rview) {
+	public void setRview(Integer rview) {
 		this.rview = rview;
 	}
 
 	@Column(name = "uview", nullable = false)
-	public int getUview() {
+	public Integer getUview() {
 		return this.uview;
 	}
 
-	public void setUview(int uview) {
+	public void setUview(Integer uview) {
 		this.uview = uview;
 	}
 
 	@Column(name = "dview", nullable = false)
-	public int getDview() {
+	public Integer getDview() {
 		return this.dview;
 	}
 
-	public void setDview(int dview) {
+	public void setDview(Integer dview) {
 		this.dview = dview;
 	}
 

@@ -3,6 +3,7 @@ package com.am.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.am.entity.Tview;
@@ -42,6 +43,11 @@ public class ViewServiceImpl implements ViewService {
 	@Override
 	public Tview findByProgview(String progview) {
 		return viewRepository.findByProgview(progview);
+	}
+
+	@Override
+	public List<Tview> findAll(Specification spec) {
+		return viewRepository.findAll(spec);
 	}
 
 }

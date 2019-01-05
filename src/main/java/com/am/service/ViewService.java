@@ -2,18 +2,15 @@ package com.am.service;
 
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.data.jpa.domain.Specification;
 
 import com.am.entity.Tview;
 
 public interface ViewService {
 	
 	public List<Tview> findAll();
+	
+	public List<Tview> findAll(Specification spec);
 	
 	Tview findByIdview(Long idview);
 	

@@ -21,23 +21,23 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "tview", catalog = "projectmanagement")
 public class Tview implements java.io.Serializable {
 
-	private long idview;
+	private Long idview;
 	private String nameview;
 	private String progview;
-	private int enabledview;
+	private Integer enabledview;
 	@JsonIgnore
 	private Set<Troleview> troleviews = new HashSet<Troleview>(0);
 
 	public Tview() {
 	}
 
-	public Tview(long idview, String nameview, int enabledview) {
+	public Tview(Long idview, String nameview, Integer enabledview) {
 		this.idview = idview;
 		this.nameview = nameview;
 		this.enabledview = enabledview;
 	}
 
-	public Tview(long idview, String nameview, String progview, int enabledview,
+	public Tview(Long idview, String nameview, String progview, Integer enabledview,
 			Set<Troleview> troleviews) {
 		this.idview = idview;
 		this.nameview = nameview;
@@ -49,11 +49,11 @@ public class Tview implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idview", unique = true, nullable = false)
-	public long getIdview() {
+	public Long getIdview() {
 		return this.idview;
 	}
 
-	public void setIdview(long idview) {
+	public void setIdview(Long idview) {
 		this.idview = idview;
 	}
 
@@ -76,11 +76,11 @@ public class Tview implements java.io.Serializable {
 	}
 
 	@Column(name = "enabledview", nullable = false)
-	public int getEnabledview() {
+	public Integer getEnabledview() {
 		return this.enabledview;
 	}
 
-	public void setEnabledview(int enabledview) {
+	public void setEnabledview(Integer enabledview) {
 		this.enabledview = enabledview;
 	}
 

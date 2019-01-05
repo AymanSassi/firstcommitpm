@@ -23,20 +23,20 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "tvocabword", catalog = "projectmanagement")
 public class Tvocabword implements java.io.Serializable {
 
-	private long idvocabword;
+	private Long idvocabword;
 	private Tvocab tvocab;
 	private String codeword;
 	private String icodeword;
 	private String nameword;
-	private int isinternal;
-	private int enabledvocab;
+	private Integer isinternal;
+	private Integer enabledvocab;
 	private Integer rownumber;
 	
 	public Tvocabword() {
 	}
 
-	public Tvocabword(long idvocabword, Tvocab tvocab, String codeword, String icodeword, String nameword,
-			int isinternal, int enabledvocab) {
+	public Tvocabword(Long idvocabword, Tvocab tvocab, String codeword, String icodeword, String nameword,
+			Integer isinternal, Integer enabledvocab) {
 		this.idvocabword = idvocabword;
 		this.tvocab = tvocab;
 		this.codeword = codeword;
@@ -49,11 +49,11 @@ public class Tvocabword implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idvocabword", unique = true, nullable = false)
-	public long getIdvocabword() {
+	public Long getIdvocabword() {
 		return this.idvocabword;
 	}
 
-	public void setIdvocabword(long idvocabword) {
+	public void setIdvocabword(Long idvocabword) {
 		this.idvocabword = idvocabword;
 	}
 
@@ -96,20 +96,20 @@ public class Tvocabword implements java.io.Serializable {
 	}
 
 	@Column(name = "isinternal", nullable = false)
-	public int getIsinternal() {
+	public Integer getIsinternal() {
 		return this.isinternal;
 	}
 
-	public void setIsinternal(int isinternal) {
+	public void setIsinternal(Integer isinternal) {
 		this.isinternal = isinternal;
 	}
 
 	@Column(name = "enabledvocab", nullable = false)
-	public int getEnabledvocab() {
+	public Integer getEnabledvocab() {
 		return this.enabledvocab;
 	}
 
-	public void setEnabledvocab(int enabledvocab) {
+	public void setEnabledvocab(Integer enabledvocab) {
 		this.enabledvocab = enabledvocab;
 	}
 
