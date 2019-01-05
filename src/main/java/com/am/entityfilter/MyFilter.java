@@ -2,6 +2,7 @@ package com.am.entityfilter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -9,6 +10,8 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.springframework.data.jpa.domain.Specification;
+
+import com.am.util.ClassInfo;
 
 public class MyFilter<T> {
 
@@ -46,7 +49,7 @@ public class MyFilter<T> {
 					case greaterThan:
 						predicates.add(builder.greaterThanOrEqualTo(root.get(s.getKey()), s.getValue().toString()));
 						break;
-						
+
 					default:
 						break;
 					}
@@ -57,4 +60,19 @@ public class MyFilter<T> {
 		};
 		return specification;
 	}
+
+	public Specification<T> getSpecificationFromEntity(Object record) {
+		if (record == null)
+			return getSpecification();
+
+		Map<String, Object> list = ClassInfo.getFieldValues(record, true);
+		System.out.println("LIST=" + list);
+		if (list != null && !list.isEmpty()) {
+			for (Map.Entry<String, Object> m : list.entrySet()) {
+				addCondition(m.getKey(), OpCriteria.equals, m.getValue());
+			}
+		}
+		return getSpecification();
+	}
+
 }

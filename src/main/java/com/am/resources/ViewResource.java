@@ -81,16 +81,8 @@ public class ViewResource {
 	@CrossOrigin
 	public ResponseEntity<List<Tview>> viewTest3(@RequestBody Tview tview) {
 		MyFilter<Tview> myfilter = new MyFilter<>();
-		Map<String, Object> list = ClassInfo.getFieldValues(tview, true);
-		System.out.println("LIST="+list);
-		if (list != null && !list.isEmpty()) {
-			for (Map.Entry<String, Object> m : list.entrySet()) {
-				myfilter.addCondition(m.getKey(), OpCriteria.equals, m.getValue());
-			}
-		}
-
-		List<Tview> find;
-		find = viewService.findAll(myfilter.getSpecification());
+		
+		List<Tview> find = viewService.findAll(myfilter.getSpecificationFromEntity(tview));
 
 		return new ResponseEntity<List<Tview>>(find, HttpStatus.OK);
 

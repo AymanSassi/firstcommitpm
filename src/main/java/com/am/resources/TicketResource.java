@@ -1,6 +1,7 @@
 package com.am.resources;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.am.entity.Tticket;
+import com.am.entity.Tview;
+import com.am.entityfilter.MyFilter;
+import com.am.entityfilter.OpCriteria;
 import com.am.service.TicketService;
+import com.am.util.ClassInfo;
 
 //http://localhost:8181/user/userList
 @RestController
@@ -29,6 +34,19 @@ public class TicketResource {
 		return ticketService.findAll();
 	}
 	
+	@RequestMapping(value = "/ticketlist2", method = RequestMethod.POST)
+	@ResponseBody
+	@CrossOrigin
+	public ResponseEntity<List<Tticket>> ticketlist2(@RequestBody Tticket tticket) {
+		MyFilter<Tticket> myfilter = new MyFilter<>();
+		
+		List<Tticket> find;
+		find = ticketService.findAll(myfilter.getSpecificationFromEntity(tticket));
+
+		return new ResponseEntity<List<Tticket>>(find, HttpStatus.OK);
+
+	}
+
 		
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody

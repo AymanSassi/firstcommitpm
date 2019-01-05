@@ -3,6 +3,7 @@ package com.am.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.am.entity.Tticket;
@@ -30,6 +31,11 @@ public class TicketServiceImpl implements TicketService {
 
 	public void delete(Long idview) {
 		ticketRepository.deleteById(idview);
+	}
+
+	@Override
+	public List<Tticket> findAll(Specification spec) {
+		return ticketRepository.findAll(spec);
 	}
 
 }
