@@ -18,6 +18,7 @@ import com.am.entity.Tticket;
 import com.am.entity.Tview;
 import com.am.entityfilter.MyFilter;
 import com.am.entityfilter.OpCriteria;
+import com.am.entityfilter.SearchCriteria;
 import com.am.service.TicketService;
 import com.am.util.ClassInfo;
 
@@ -41,7 +42,7 @@ public class TicketResource {
 		MyFilter<Tticket> myfilter = new MyFilter<>();
 		
 		List<Tticket> find;
-		find = ticketService.findAll(myfilter.getSpecificationFromEntity(tticket));
+		find = ticketService.findAll(myfilter.getSpecificationFromEntity(tticket,OpCriteria.likeIgnoreCase));
 
 		return new ResponseEntity<List<Tticket>>(find, HttpStatus.OK);
 
@@ -69,5 +70,33 @@ public class TicketResource {
 	public void delete(@PathVariable("id") long id) {
 		ticketService.delete(id);
 	}
+	
+	
+	
+	//utilisation de la recherche par programmation à partir bu front : injection de searchCriteria
+	@RequestMapping(value = "/searchbycriteria", method = RequestMethod.POST)
+	@ResponseBody
+	@CrossOrigin
+	public ResponseEntity<List<Tticket>> searchbycriteria(@RequestBody(required=false) SearchCriteria[] searchCriterias) {
+		MyFilter<Tticket> myfilter = new MyFilter<>();
+		for(SearchCriteria c:searchCriterias)
+		{
+			System.out.println("SearchCriteria: "+c.getKey()+" "+c.getOperation()+" "+c.getValue());
+		}
+		if (searchCriterias != null) {
+			for (SearchCriteria s:searchCriterias) {
+				myfilter.addCondition(s);
+			}
+		}
+
+		List<Tticket> find;
+		
+		find = ticketService.findAll(myfilter.getSpecification());
+		//find = viewService.findAll();
+
+		return new ResponseEntity<List<Tticket>>(find, HttpStatus.OK);
+
+	}
+
 
 }

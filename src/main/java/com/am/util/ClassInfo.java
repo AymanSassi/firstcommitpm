@@ -195,7 +195,9 @@ public class ClassInfo {
 							|| o instanceof Long) {
 						if (!onlyNotNull || o != null) {
 							// System.out.println("FOK=" + f1.getName());
-							fieldValues.put(f.getName(), invokeGetter(record, f.getName()));
+							if (onlyNotNull && o != null && o instanceof String && ((String) o).isEmpty()) {
+							} else
+								fieldValues.put(f.getName(), o);
 						}
 
 					}

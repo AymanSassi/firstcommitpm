@@ -23,6 +23,7 @@ import com.am.entityfilter.OpCriteria;
 import com.am.entityfilter.SearchCriteria;
 import com.am.service.ViewService;
 import com.am.util.ClassInfo;
+import com.am.util.Param;
 
 //http://localhost:8181/user/userList
 @RestController
@@ -42,7 +43,7 @@ public class ViewResource {
 	@CrossOrigin
 	public List<Tview> viewTest() {
 		MyFilter<Tview> myfilter = new MyFilter<>();
-		myfilter.addCondition("enabledview", 1);
+		myfilter.addCondition("enabledview",OpCriteria.equals, new Integer(1).toString());
 		//myfilter.addCondition("progview", OpCriteria.like, "/prod%");
 		myfilter.addCondition("nameview", OpCriteria.like, "%e%");
 		
@@ -67,7 +68,8 @@ public class ViewResource {
 		System.out.println("matcher="+matcher);
 		while (matcher.find()) {
 			// System.out.println("matcher.group(2)="+matcher.group(2));
-			myfilter.addCondition(matcher.group(1), OpCriteria.toEnum(matcher.group(2)), matcher.group(3));
+			myfilter.addCondition(matcher.group(1), OpCriteria.fromString(matcher.group(2)), matcher.group(3));
+			
 		}
 
 		List<Tview> find;
@@ -79,10 +81,11 @@ public class ViewResource {
 	@RequestMapping(value = "/viewtest3", method = RequestMethod.POST)
 	@ResponseBody
 	@CrossOrigin
-	public ResponseEntity<List<Tview>> viewTest3(@RequestBody Tview tview) {
+	public ResponseEntity<List<Tview>> viewTest3(@RequestBody(required=false) Tview tview,@RequestBody(required=false) List<Param> params) {
 		MyFilter<Tview> myfilter = new MyFilter<>();
 		
-		List<Tview> find = viewService.findAll(myfilter.getSpecificationFromEntity(tview));
+		System.out.println("Params="+params);
+		List<Tview> find = viewService.findAll(myfilter.getSpecificationFromEntity(tview,OpCriteria.likeIgnoreCase));
 
 		return new ResponseEntity<List<Tview>>(find, HttpStatus.OK);
 
@@ -102,7 +105,7 @@ public class ViewResource {
 		System.out.println("LISTLENGTH=" + list);
 		if (list != null && !list.isEmpty()) {
 			for (Map.Entry<String, Object> m : list.entrySet()) {
-				myfilter.addCondition(m.getKey(), OpCriteria.equals, m.getValue());
+				myfilter.addCondition(m.getKey(), OpCriteria.equals, m.getValue().toString());
 			}
 		}
 		System.out.println("ici");
@@ -115,9 +118,13 @@ public class ViewResource {
 	@RequestMapping(value = "/viewtest5", method = RequestMethod.POST)
 	@ResponseBody
 	@CrossOrigin
-	public ResponseEntity<List<Tview>> viewTest5(@RequestBody SearchCriteria[] searchCriterias) {
+	public ResponseEntity<List<Tview>> viewTest5(@RequestBody(required=false) SearchCriteria[] searchCriterias) {
 		MyFilter<Tview> myfilter = new MyFilter<>();
-		
+		System.out.println("searchCriterias="+searchCriterias);
+		for(SearchCriteria c:searchCriterias)
+		{
+			System.out.println("searchCriteria="+c.getKey()+"/"+c.getValue()+";"+c.getOperation());
+		}
 		if (searchCriterias != null) {
 			for (SearchCriteria s:searchCriterias) {
 				myfilter.addCondition(s.getKey(), s.getOperation(), s.getValue());
