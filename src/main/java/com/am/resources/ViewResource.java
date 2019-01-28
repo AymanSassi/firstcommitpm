@@ -38,15 +38,15 @@ public class ViewResource {
 		return viewService.findAll();
 	}
 
-	//utilisation de la recherche par programmation à partir bu back (définir manuellement les conditions)
+	// utilisation de la recherche par programmation à partir bu back (définir
+	// manuellement les conditions)
 	@RequestMapping(value = "/viewtest", method = RequestMethod.GET)
 	@CrossOrigin
 	public List<Tview> viewTest() {
 		MyFilter<Tview> myfilter = new MyFilter<>();
-		myfilter.addCondition("enabledview",OpCriteria.equals, new Integer(1).toString());
-		//myfilter.addCondition("progview", OpCriteria.like, "/prod%");
+		myfilter.addCondition("enabledview", OpCriteria.equals, new Integer(1).toString());
+		// myfilter.addCondition("progview", OpCriteria.like, "/prod%");
 		myfilter.addCondition("nameview", OpCriteria.like, "%e%");
-		
 
 		// myfilter.addCondition(new SearchCriteria("enabledview", "and", 1));
 
@@ -54,9 +54,9 @@ public class ViewResource {
 		find = viewService.findAll(myfilter.getSpecification());
 		return find;
 	}
-	
-	//http://localhost:8181/view/viewtest2?search=nameview:Aaa,enabledview:0
-	//utilisation de la recherche injectée dans l'url ?search=
+
+	// http://localhost:8181/view/viewtest2?search=nameview:Aaa,enabledview:0
+	// utilisation de la recherche injectée dans l'url ?search=
 	@RequestMapping(value = "/viewtest2", method = RequestMethod.GET)
 	@CrossOrigin
 	public List<Tview> viewTest2(@RequestParam(value = "search") String search) {
@@ -65,11 +65,11 @@ public class ViewResource {
 		// Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),");
 		Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),", Pattern.UNICODE_CHARACTER_CLASS);
 		Matcher matcher = pattern.matcher(search + ",");
-		System.out.println("matcher="+matcher);
+		System.out.println("matcher=" + matcher);
 		while (matcher.find()) {
 			// System.out.println("matcher.group(2)="+matcher.group(2));
 			myfilter.addCondition(matcher.group(1), OpCriteria.fromString(matcher.group(2)), matcher.group(3));
-			
+
 		}
 
 		List<Tview> find;
@@ -77,21 +77,24 @@ public class ViewResource {
 		return find;
 	}
 
-	//utilisation de la recherche par injection d'une classe à partir du front (utiliser seulement les champs non vides)
+	// utilisation de la recherche par injection d'une classe à partir du front
+	// (utiliser seulement les champs non vides)
 	@RequestMapping(value = "/viewtest3", method = RequestMethod.POST)
 	@ResponseBody
 	@CrossOrigin
-	public ResponseEntity<List<Tview>> viewTest3(@RequestBody(required=false) Tview tview,@RequestBody(required=false) List<Param> params) {
+	public ResponseEntity<List<Tview>> viewTest3(@RequestBody(required = false) Tview tview,
+			@RequestBody(required = false) List<Param> params) {
 		MyFilter<Tview> myfilter = new MyFilter<>();
-		
-		System.out.println("Params="+params);
-		List<Tview> find = viewService.findAll(myfilter.getSpecificationFromEntity(tview,OpCriteria.likeIgnoreCase));
+
+		System.out.println("Params=" + params);
+		List<Tview> find = viewService.findAll(myfilter.getSpecificationFromEntity(tview, OpCriteria.likeIgnoreCase));
 
 		return new ResponseEntity<List<Tview>>(find, HttpStatus.OK);
 
 	}
 
-	//utilisation de la recherche par programmation à partir bu back (utiliser les condition à partir d'une classe)
+	// utilisation de la recherche par programmation à partir bu back (utiliser les
+	// condition à partir d'une classe)
 	@RequestMapping(value = "/viewtest4", method = RequestMethod.GET)
 	@ResponseBody
 	@CrossOrigin
@@ -114,44 +117,54 @@ public class ViewResource {
 		return find;
 	}
 
-	//utilisation de la recherche par programmation à partir bu front : injection de searchCriteria
+	// utilisation de la recherche par programmation à partir bu front : injection
+	// de searchCriteria
 	@RequestMapping(value = "/viewtest5", method = RequestMethod.POST)
 	@ResponseBody
 	@CrossOrigin
-	public ResponseEntity<List<Tview>> viewTest5(@RequestBody(required=false) SearchCriteria[] searchCriterias) {
+	public ResponseEntity<List<Tview>> viewTest5(@RequestBody(required = false) SearchCriteria[] searchCriterias) {
 		MyFilter<Tview> myfilter = new MyFilter<>();
-		System.out.println("searchCriterias="+searchCriterias);
-		for(SearchCriteria c:searchCriterias)
-		{
-			System.out.println("searchCriteria="+c.getKey()+"/"+c.getValue()+";"+c.getOperation());
+		System.out.println("searchCriterias=" + searchCriterias);
+		for (SearchCriteria c : searchCriterias) {
+			System.out.println("searchCriteria=" + c.getKey() + "/" + c.getValue() + ";" + c.getOperation());
 		}
 		if (searchCriterias != null) {
-			for (SearchCriteria s:searchCriterias) {
+			for (SearchCriteria s : searchCriterias) {
 				myfilter.addCondition(s.getKey(), s.getOperation(), s.getValue());
 			}
 		}
 
 		List<Tview> find;
-		
+
 		find = viewService.findAll(myfilter.getSpecification());
-		//find = viewService.findAll();
+		// find = viewService.findAll();
 
 		return new ResponseEntity<List<Tview>>(find, HttpStatus.OK);
 
 	}
-	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	@ResponseBody
-	@CrossOrigin
-	public Tview getView(@PathVariable("id") long id) {
-		return viewService.findByIdview(id);
-	}
+
+	/*
+	 * @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	 * 
+	 * @ResponseBody
+	 * 
+	 * @CrossOrigin public Tview getView(@PathVariable("id") long id) { return
+	 * viewService.findByIdview(id); }
+	 */
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	@ResponseBody
 	@CrossOrigin
-	public Tview getView(@RequestParam("progview") String progView) {
-		return viewService.findByProgview(progView);
+	public Tview getView(@RequestParam(required = false,value = "id") Long id,@RequestParam(required = false,value="progview") String progView) {
+		if (progView!=null)
+		{
+			System.out.println();
+			return viewService.findByProgview(progView);
+		}
+		else if (id!=null)
+			return viewService.findByIdview(id);
+		else
+			return null;
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)

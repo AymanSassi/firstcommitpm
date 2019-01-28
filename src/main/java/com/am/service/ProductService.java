@@ -15,6 +15,8 @@ public interface ProductService {
 		
 	Tproduct findByIdproduct(Long idproduct);
 	
+	Tproduct findByNameproduct(String nameproduct);
+	
 	public Tproduct save(Tproduct tproduct);
 	
 	public void delete(Long idproduct);

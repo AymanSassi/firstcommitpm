@@ -14,6 +14,8 @@ public interface ProductRepository extends CrudRepository<Tproduct, Long> {
 	@Query("select v from Tproduct v order by v.nameproduct")
 	List<Tproduct> findAll();
 	
-	Tproduct findByIdproduct(long idproduct);
+	Tproduct findByIdproduct(Long idproduct);
+	
+	Tproduct findByNameproduct(String nameproduct);
 	
 }

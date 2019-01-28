@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,28 +29,33 @@ public class ProductResource {
 	public List<Tproduct> productList() {
 		return productService.findAll();
 	}
-	//commented
-	/*@RequestMapping(value = "/productlistquery", method = RequestMethod.GET)
-	@CrossOrigin
-	public List<Tproduct> productQuery(@RequestBody Tproduct tproduct) {
-		return productService.findQuery(tproduct);
-	}*/
-		
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	// commented
+	/*
+	 * @RequestMapping(value = "/productlistquery", method = RequestMethod.GET)
+	 * 
+	 * @CrossOrigin public List<Tproduct> productQuery(@RequestBody Tproduct
+	 * tproduct) { return productService.findQuery(tproduct); }
+	 */
+
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	@ResponseBody
 	@CrossOrigin
-	public Tproduct geTproduct(@PathVariable("id") long id) {
-		return productService.findByIdproduct(id);
-	}	
-	
+	public Tproduct geTproduct(@RequestParam(required = false, value = "id") Long id,@RequestParam(required = false, value = "nameproduct") String nameproduct) {
+		if(nameproduct!=null)
+			return productService.findByNameproduct(nameproduct);
+		else if (id != null)
+			return productService.findByIdproduct(id);
+		return null;
+	}
+
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
 	@CrossOrigin
 	public ResponseEntity<Tproduct> save(@RequestBody Tproduct tproduct) {
-		Tproduct tproductsave=productService.save(tproduct);
+		Tproduct tproductsave = productService.save(tproduct);
 		return new ResponseEntity<Tproduct>(tproductsave, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
 	@CrossOrigin

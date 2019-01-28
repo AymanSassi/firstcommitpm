@@ -48,6 +48,11 @@ public class ProductServiceImpl implements ProductService {
 		productRepository.deleteById(idproduct);
 	}
 
+	@Override
+	public Tproduct findByNameproduct(String nameproduct) {
+		return productRepository.findByNameproduct(nameproduct);
+	}
+
 	
 
 	
