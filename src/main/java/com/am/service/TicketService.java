@@ -17,6 +17,8 @@ public interface TicketService {
 	
 	public List<Graph2d> findCountGroupMonth();
 	
+	public List<Graph2d> findCountGroupProductStatus();
+	
 	public Tticket save(Tticket tticket);
 	
 	public void delete(Long idticket);

@@ -38,6 +38,12 @@ public class TicketServiceImpl implements TicketService {
 		return finalList;
 		
 	}
+	public List<Graph2d> findCountGroupProductStatus(){
+		List<Graph2d> list = ticketRepository.findCountGroupProductStatus();
+		return list;
+		
+	}
+	
 	
 	public List<Tticket> findAll() {
 		return ticketRepository.findAll();

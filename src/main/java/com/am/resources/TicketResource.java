@@ -25,7 +25,7 @@ import com.am.service.TicketService;
 import com.am.util.ClassInfo;
 import com.am.util.Graph2d;
 
-//http://localhost:8181/user/userList
+//http://localhost:8181/user/userlist
 @RestController
 @RequestMapping("/ticket")
 public class TicketResource {
@@ -54,11 +54,19 @@ public class TicketResource {
 	@RequestMapping(value = "/countgroupmonth", method = RequestMethod.GET)
 	@ResponseBody
 	@CrossOrigin
-	public ResponseEntity<List<Graph2d>> ticketcount() {
+	public ResponseEntity<List<Graph2d>> countgroupmonth() {
 		List<Graph2d> list = ticketService.findCountGroupMonth();
 		return new ResponseEntity<List<Graph2d>>(list, HttpStatus.OK);
 	}
-
+	
+	@RequestMapping(value = "/countgroupproductstatus", method = RequestMethod.GET)
+	@ResponseBody
+	@CrossOrigin
+	public ResponseEntity<List<Graph2d>> countgroupproductstatus() {
+		List<Graph2d> list = ticketService.findCountGroupProductStatus();
+		return new ResponseEntity<List<Graph2d>>(list, HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	@CrossOrigin
