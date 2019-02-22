@@ -67,6 +67,14 @@ public class TicketResource {
 		return new ResponseEntity<List<Graph2d>>(list, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/countfxornbgrpreportertype", method = RequestMethod.GET)
+	@ResponseBody
+	@CrossOrigin
+	public ResponseEntity<List<Graph2d>> countfxornbgrpreportertype() {
+		List<Graph2d> list = ticketService.findFXorNBGrpReportertype();
+		return new ResponseEntity<List<Graph2d>>(list, HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	@CrossOrigin

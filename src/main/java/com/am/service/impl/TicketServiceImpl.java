@@ -43,6 +43,12 @@ public class TicketServiceImpl implements TicketService {
 		return list;
 		
 	}
+	public List<Graph2d> findFXorNBGrpReportertype(){
+		List<Graph2d> list = ticketRepository.findFXorNBGrpReportertype();
+		return list;
+		
+	}
+	
 	
 	
 	public List<Tticket> findAll() {

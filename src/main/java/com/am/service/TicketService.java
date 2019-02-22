@@ -19,6 +19,8 @@ public interface TicketService {
 	
 	public List<Graph2d> findCountGroupProductStatus();
 	
+	public List<Graph2d> findFXorNBGrpReportertype();
+	
 	public Tticket save(Tticket tticket);
 	
 	public void delete(Long idticket);
