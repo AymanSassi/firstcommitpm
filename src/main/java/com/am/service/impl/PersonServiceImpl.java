@@ -15,14 +15,8 @@ public class PersonServiceImpl implements PersonService {
 	@Autowired
 	private PersonRepository personRepository;
 	
-	
-
 	public List<Tperson> findAll() {
-		
-		
-		
-		return personRepository.findAll();
-
+			return personRepository.findAll();
 	}
 
 	@Override
@@ -43,8 +37,5 @@ public class PersonServiceImpl implements PersonService {
 	public Tperson findByNameperson(String nameperson) {
 		return personRepository.findByNameperson(nameperson);
 	}
-
-	
-
 
 }
