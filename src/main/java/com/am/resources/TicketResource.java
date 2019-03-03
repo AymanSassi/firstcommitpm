@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.am.entity.Tproduct;
 import com.am.entity.Tticket;
 import com.am.entity.Tview;
 import com.am.entityfilter.MyFilter;
@@ -75,10 +77,10 @@ public class TicketResource {
 		return new ResponseEntity<List<Graph2d>>(list, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	@ResponseBody
 	@CrossOrigin
-	public Tticket getTikcet(@PathVariable("id") long id) {
+	public Tticket getTicket(@RequestParam(required = false, value = "id") long id) {
 		return ticketService.findByIdticket(id);
 	}
 

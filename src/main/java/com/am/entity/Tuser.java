@@ -24,6 +24,7 @@ import com.am.security.Authority;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 /**
@@ -31,6 +32,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  */
 @Entity
 @Table(name = "tuser", catalog = "projectmanagement")
+@DynamicUpdate
 public class Tuser implements UserDetails,java.io.Serializable {
 
 	private Long iduser;
