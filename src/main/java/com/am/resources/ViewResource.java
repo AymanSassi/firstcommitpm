@@ -158,7 +158,9 @@ public class ViewResource {
 	public Tview getView(@RequestParam(required = false,value = "id") Long id,@RequestParam(required = false,value="progview") String progView) {
 		if (progView!=null)
 		{
-			return viewService.findByProgview(progView);
+			List<Tview> v= viewService.findByProgview(progView);
+			if (v!=null) return v.get(0);
+			else return null;
 		}
 		else if (id!=null)
 			return viewService.findByIdview(id);

@@ -41,7 +41,7 @@ public class ViewServiceImpl implements ViewService {
 	}
 
 	@Override
-	public Tview findByProgview(String progview) {
+	public List<Tview> findByProgview(String progview) {
 		return viewRepository.findByProgview(progview);
 	}
 

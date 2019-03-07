@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import com.am.entity.Tview;
+import com.am.entity.Tvocabword;
 
 public interface ViewRepository extends CrudRepository<Tview, Long> , JpaSpecificationExecutor{
 	
@@ -22,5 +23,7 @@ public interface ViewRepository extends CrudRepository<Tview, Long> , JpaSpecifi
 	
 	Tview findByIdview(long idview);
 	
-	Tview findByProgview(String progview);
+	
+	@Query("select t from Tview t where t.progview=?1")
+	List<Tview> findByProgview(String progview);
 }

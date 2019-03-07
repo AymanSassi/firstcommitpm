@@ -14,7 +14,7 @@ public interface ViewService {
 	
 	Tview findByIdview(Long idview);
 	
-	Tview findByProgview(String progview);
+	List<Tview> findByProgview(String progview);
 	
 	public Tview save(Tview tview);
 	
