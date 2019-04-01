@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.am.entity.Tperson;
+import com.am.entity.Tticket;
 import com.am.entity.Tworkcolumndata;
 import com.am.repository.PersonRepository;
 import com.am.repository.WorkdcolumndataRepository;
@@ -46,10 +47,17 @@ public class WorkcolumndataServiceImpl implements WorkcolumndataService {
 
 	@Override
 	public List<Tworkcolumndata> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		
+			return workcolumndataRepository.findAll();
+		
+
 	}
 
+	@Override
+	public void delete(Long idsession) {
+		workcolumndataRepository.deleteById(idsession);	}
+
+	
 	
 
 }

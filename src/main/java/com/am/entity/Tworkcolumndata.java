@@ -331,12 +331,6 @@ public class Tworkcolumndata implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	/*@GeneratedValue(strategy=GenerationType.TABLE , generator="employee_generator")
-	@TableGenerator(name="employee_generator", 
-	                table="pk_table", 
-	                pkColumnName="name", 
-	                valueColumnName="value",                            
-	                allocationSize=100)*/ 
 	@Column(name = "idworkcolumndata", unique = true, nullable = false)
 	public Long getIdworkcolumndata() {
 		return this.idworkcolumndata;

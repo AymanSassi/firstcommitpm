@@ -31,7 +31,7 @@ public class Tworkvaluedata implements java.io.Serializable {
 	private Tworklinedata idworklinedata;
 	private Tworkcolumndata idworkcolumndata;
 	private String codeworkdata;
-	
+
 	private String c1;
 	private String c2;
 	private String c3;
@@ -52,307 +52,201 @@ public class Tworkvaluedata implements java.io.Serializable {
 	private Integer n8;
 	private Integer n9;
 	private Integer n10;
-	
-	
-	
+
 	public String getC1() {
 		return c1;
 	}
-
-
 
 	public void setC1(String c1) {
 		this.c1 = c1;
 	}
 
-
-
 	public String getC2() {
 		return c2;
 	}
-
-
 
 	public void setC2(String c2) {
 		this.c2 = c2;
 	}
 
-
-
 	public String getC3() {
 		return c3;
 	}
-
-
 
 	public void setC3(String c3) {
 		this.c3 = c3;
 	}
 
-
-
 	public String getC4() {
 		return c4;
 	}
-
-
 
 	public void setC4(String c4) {
 		this.c4 = c4;
 	}
 
-
-
 	public String getC5() {
 		return c5;
 	}
-
-
 
 	public void setC5(String c5) {
 		this.c5 = c5;
 	}
 
-
-
 	public String getC6() {
 		return c6;
 	}
-
-
 
 	public void setC6(String c6) {
 		this.c6 = c6;
 	}
 
-
-
 	public String getC7() {
 		return c7;
 	}
-
-
 
 	public void setC7(String c7) {
 		this.c7 = c7;
 	}
 
-
-
 	public String getC8() {
 		return c8;
 	}
-
-
 
 	public void setC8(String c8) {
 		this.c8 = c8;
 	}
 
-
-
 	public String getC9() {
 		return c9;
 	}
-
-
 
 	public void setC9(String c9) {
 		this.c9 = c9;
 	}
 
-
-
 	public String getC10() {
 		return c10;
 	}
-
-
 
 	public void setC10(String c10) {
 		this.c10 = c10;
 	}
 
-
-
 	public Integer getN1() {
 		return n1;
 	}
-
-
 
 	public void setN1(Integer n1) {
 		this.n1 = n1;
 	}
 
-
-
 	public Integer getN2() {
 		return n2;
 	}
-
-
 
 	public void setN2(Integer n2) {
 		this.n2 = n2;
 	}
 
-
-
 	public Integer getN3() {
 		return n3;
 	}
-
-
 
 	public void setN3(Integer n3) {
 		this.n3 = n3;
 	}
 
-
-
 	public Integer getN4() {
 		return n4;
 	}
-
-
 
 	public void setN4(Integer n4) {
 		this.n4 = n4;
 	}
 
-
-
 	public Integer getN5() {
 		return n5;
 	}
-
-
 
 	public void setN5(Integer n5) {
 		this.n5 = n5;
 	}
 
-
-
 	public Integer getN6() {
 		return n6;
 	}
-
-
 
 	public void setN6(Integer n6) {
 		this.n6 = n6;
 	}
 
-
-
 	public Integer getN7() {
 		return n7;
 	}
-
-
 
 	public void setN7(Integer n7) {
 		this.n7 = n7;
 	}
 
-
-
 	public Integer getN8() {
 		return n8;
 	}
-
-
 
 	public void setN8(Integer n8) {
 		this.n8 = n8;
 	}
 
-
-
 	public Integer getN9() {
 		return n9;
 	}
-
-
 
 	public void setN9(Integer n9) {
 		this.n9 = n9;
 	}
 
-
-
 	public Integer getN10() {
 		return n10;
 	}
-
-
 
 	public void setN10(Integer n10) {
 		this.n10 = n10;
 	}
 
-
-
 	public Long getIdsession() {
 		return idsession;
 	}
-
-
 
 	public void setIdsession(Long idsession) {
 		this.idsession = idsession;
 	}
 
-
-
-
-
 	public Tworklinedata getIdworklinedata() {
 		return idworklinedata;
 	}
-
-
 
 	public void setIdworklinedata(Tworklinedata idworklinedata) {
 		this.idworklinedata = idworklinedata;
 	}
 
-
-
 	public Tworkcolumndata getIdworkcolumndata() {
 		return idworkcolumndata;
 	}
-
-
 
 	public void setIdworkcolumndata(Tworkcolumndata idworkcolumndata) {
 		this.idworkcolumndata = idworkcolumndata;
 	}
 
-
-
 	public String getCodeworkdata() {
 		return codeworkdata;
 	}
-
-
 
 	public void setCodeworkdata(String codeworkdata) {
 		this.codeworkdata = codeworkdata;
 	}
 
-
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	/*@GeneratedValue(strategy=GenerationType.TABLE , generator="employee_generator")
-	@TableGenerator(name="employee_generator", 
-	                table="pk_table", 
-	                pkColumnName="name", 
-	                valueColumnName="value",                            
-	                allocationSize=100)*/ 
 	@Column(name = "idworkvaluedata", unique = true, nullable = false)
 	public Long getIdworkvaluedata() {
 		return this.idworkvaluedata;
@@ -362,7 +256,4 @@ public class Tworkvaluedata implements java.io.Serializable {
 		this.idworkvaluedata = idworkvaluedata;
 	}
 
-
-
-	
 }

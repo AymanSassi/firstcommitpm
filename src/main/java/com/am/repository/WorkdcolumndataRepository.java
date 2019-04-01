@@ -1,5 +1,6 @@
 package com.am.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -15,6 +16,7 @@ import com.am.entity.Tworklinedata;
 public interface WorkdcolumndataRepository extends CrudRepository<Tworkcolumndata, Long> , JpaSpecificationExecutor {
 	
 
-
+	@Query("select v from Tworkcolumndata")
+	List<Tworkcolumndata> findAll();
 }
 

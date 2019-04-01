@@ -1,7 +1,5 @@
 package com.am.service.impl;
 
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,39 +15,40 @@ import com.am.service.WorklinedataService;
 
 @Service
 public class WorklinedataServiceImpl implements WorklinedataService {
-	
+
 	@Autowired
 	private WorkdlinedataRepository worklinedataRepository;
-	
+
 	@Override
 	public Tworklinedata save(Tworklinedata tworklinedata) {
 		// TODO Auto-generated method stub
 		return worklinedataRepository.save(tworklinedata);
-		
+
 	}
 
 	@Override
 	public List<Tworklinedata> saveAll(List<Tworklinedata> tworklinedata) {
-		for(int i=0;i<tworklinedata.size();i++) {
-			save(tworklinedata.get(i));
-		}
+		worklinedataRepository.saveAll(tworklinedata);
 		return tworklinedata;
 	}
 
-
-
-
-
-
-
-
-
 	@Override
 	public List<Tworklinedata> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Tworklinedata>) worklinedataRepository.findAll();
 	}
 
-	
+	@Override
+	public List<Tworklinedata> findByIdsession(Long idsession) {
+		return worklinedataRepository.findByIdsession(idsession);
+	}
+
+	@Override
+	public List<Tworklinedata> findByIdsessionAndCodeworkdata(Long idsession, String codeworkdata) {
+		return worklinedataRepository.findByIdsessionAndCodeworkdata(idsession, codeworkdata);
+	}
+
+	@Override
+	public void delete(Long idsession) {
+		worklinedataRepository.deleteById(idsession);	}
 
 }

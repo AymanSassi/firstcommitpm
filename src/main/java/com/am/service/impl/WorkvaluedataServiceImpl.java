@@ -50,6 +50,10 @@ public class WorkvaluedataServiceImpl implements WorkvaluedataService {
 		return null;
 	}
 
+	@Override
+	public void delete(Long idsession) {
+		workvaluedataRepository.deleteById(idsession);	}
+
 	
 
 }

@@ -14,6 +14,6 @@ public interface WorkvaluedataService {
 
 	public List<Tworkvaluedata> findAll();
 
-	
+	public void delete(Long idworkvaluedata);
 
 }

@@ -14,6 +14,6 @@ public interface WorkcolumndataService {
 
 	public List<Tworkcolumndata> findAll();
 
-	
+	public void delete(Long idworkcolumndata);
 
 }
