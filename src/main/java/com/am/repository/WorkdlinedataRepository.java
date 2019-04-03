@@ -19,5 +19,9 @@ public interface WorkdlinedataRepository extends CrudRepository<Tworklinedata, L
 	
 	List<Tworklinedata> findByIdsessionAndCodeworkdata(Long idsession,String codeworkdata);
 	
+	void deleteByIdsession(Long idsession);
+	
+	void deleteByIdsessionAndCodeworkdata(Long idsession, String codeworkdata);
+	
 
 }

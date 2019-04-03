@@ -33,11 +33,6 @@ public class WorklinedataServiceImpl implements WorklinedataService {
 	}
 
 	@Override
-	public List<Tworklinedata> findAll() {
-		return (List<Tworklinedata>) worklinedataRepository.findAll();
-	}
-
-	@Override
 	public List<Tworklinedata> findByIdsession(Long idsession) {
 		return worklinedataRepository.findByIdsession(idsession);
 	}
@@ -49,6 +44,19 @@ public class WorklinedataServiceImpl implements WorklinedataService {
 
 	@Override
 	public void delete(Long idsession) {
-		worklinedataRepository.deleteById(idsession);	}
+		worklinedataRepository.deleteById(idsession);
+	}
+
+	@Override
+	public void deleteByIdsession(Long idsession) {
+		worklinedataRepository.deleteByIdsession(idsession);
+
+	}
+
+	@Override
+	public void deleteByIdsessionAndCodeworkdata(Long idsession, String codeworkdata) {
+		worklinedataRepository.deleteByIdsessionAndCodeworkdata(idsession, codeworkdata);
+
+	}
 
 }

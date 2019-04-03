@@ -11,12 +11,14 @@ public interface WorklinedataService {
 
 	public List<Tworklinedata> saveAll(List<Tworklinedata> tworklinedata);
 
-	public List<Tworklinedata> findAll();
-
 	List<Tworklinedata> findByIdsession(Long idsession);
 
 	List<Tworklinedata> findByIdsessionAndCodeworkdata(Long idsession, String codeworkdata);
-	
+
 	public void delete(Long idworklinedata);
+
+	void deleteByIdsession(Long idsession);
+
+	void deleteByIdsessionAndCodeworkdata(Long idsession, String codeworkdata);
 
 }

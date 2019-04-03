@@ -238,4 +238,12 @@ public class Tworklinedata implements java.io.Serializable {
 		this.idworklinedata = idworklinedata;
 	}
 
+	public Long getIdsession() {
+		return idsession;
+	}
+
+	public void setIdsession(Long idsession) {
+		this.idsession = idsession;
+	}
+
 }

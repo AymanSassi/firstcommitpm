@@ -13,10 +13,15 @@ import com.am.entity.Tticket;
 import com.am.entity.Tworkcolumndata;
 import com.am.entity.Tworklinedata;
 
-public interface WorkdcolumndataRepository extends CrudRepository<Tworkcolumndata, Long> , JpaSpecificationExecutor {
+public interface WorkcolumndataRepository extends CrudRepository<Tworkcolumndata, Long>, JpaSpecificationExecutor {
+
+	List<Tworkcolumndata> findByIdsession(Long idsession);
+
+	List<Tworkcolumndata> findByIdsessionAndCodeworkdata(Long idsession, String codeworkdata);
+	
+	void deleteByIdsession(Long idsession);
+	
+	void deleteByIdsessionAndCodeworkdata(Long idsession, String codeworkdata);
 	
 
-	@Query("select v from Tworkcolumndata")
-	List<Tworkcolumndata> findAll();
 }
-

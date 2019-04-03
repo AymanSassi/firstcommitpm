@@ -30,15 +30,18 @@ public class WorkdataResource {
 
 	@Autowired
 	private WorklinedataService worklinedataService;
-	
+
 	@Autowired
 	private WorkvaluedataService workvaluedataService;
 
 	@RequestMapping(value = "/line/list", method = RequestMethod.GET)
 	@CrossOrigin
 	public List<Tworklinedata> lineList(@RequestParam(required = true, value = "idsession") Long idsession,
-			@RequestParam(required = true, value = "codeworkdata") String codeworkdata) {
-		return worklinedataService.findByIdsessionAndCodeworkdata(idsession, codeworkdata);
+			@RequestParam(required = false, value = "codeworkdata") String codeworkdata) {
+		if (codeworkdata == null)
+			return worklinedataService.findByIdsession(idsession);
+		else
+			return worklinedataService.findByIdsessionAndCodeworkdata(idsession, codeworkdata);
 	}
 
 	@RequestMapping(value = "/line/save", method = RequestMethod.POST)
@@ -60,11 +63,14 @@ public class WorkdataResource {
 	@RequestMapping(value = "/column/list", method = RequestMethod.GET)
 	@CrossOrigin
 	public List<Tworkcolumndata> workcolumndataList(@RequestParam(required = true, value = "idsession") Long idsession,
-			@RequestParam(required = true, value = "codeworkdata") String codeworkdata) {
-		return workcolumndataService.findAll();
+			@RequestParam(required = false, value = "codeworkdata") String codeworkdata) {
+		if (codeworkdata == null)
+			return workcolumndataService.findByIdsession(idsession);
+		else
+			return workcolumndataService.findByIdsessionAndCodeworkdata(idsession, codeworkdata);
 	}
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/column/save", method = RequestMethod.POST)
 	@ResponseBody
 	@CrossOrigin
 	public ResponseEntity<Tworkcolumndata> save(@RequestBody Tworkcolumndata tworkcolumndata) {
@@ -79,34 +85,24 @@ public class WorkdataResource {
 		List<Tworkcolumndata> tworkcolumndatasave = workcolumndataService.saveAll(tworkcolumndata);
 		return new ResponseEntity<List<Tworkcolumndata>>(tworkcolumndatasave, HttpStatus.OK);
 	}
-	
-	
-	
-	
+
 	@RequestMapping(value = "/value/list", method = RequestMethod.GET)
 	@CrossOrigin
 	public List<Tworkvaluedata> workvaluedataList(@RequestParam(required = true, value = "idsession") Long idsession,
-			@RequestParam(required = true, value = "codeworkdata") String codeworkdata) {
-		return workvaluedataService.findAll();
+			@RequestParam(required = false, value = "codeworkdata") String codeworkdata) {
+		if (codeworkdata == null)
+			return workvaluedataService.findByIdsession(idsession);
+		else
+			return workvaluedataService.findByIdsessionAndCodeworkdata(idsession, codeworkdata);
 	}
-	
-	
-	@RequestMapping(value = "/workvaluedatalist", method = RequestMethod.GET)
-	@CrossOrigin
-	public List<Tworkvaluedata> workvaluedataList() {
-		return workvaluedataService.findAll();
-	}
-	
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/value/save", method = RequestMethod.POST)
 	@ResponseBody
 	@CrossOrigin
 	public ResponseEntity<Tworkvaluedata> save(@RequestBody Tworkvaluedata tworkvaluedata) {
 		Tworkvaluedata tworkvaluedatasave = workvaluedataService.save(tworkvaluedata);
 		return new ResponseEntity<Tworkvaluedata>(tworkvaluedatasave, HttpStatus.OK);
 	}
-
-	
 
 	@RequestMapping(value = "/value/saveall", method = RequestMethod.POST)
 	@ResponseBody
@@ -115,19 +111,21 @@ public class WorkdataResource {
 		List<Tworkvaluedata> tworkvaluedatasave = workvaluedataService.saveAll(tworkvaluedata);
 		return new ResponseEntity<List<Tworkvaluedata>>(tworkvaluedatasave, HttpStatus.OK);
 	}
-	
-	
-	
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
 	@ResponseBody
 	@CrossOrigin
-	public void delete(@PathVariable("id") long id) {
-		workcolumndataService.delete(id);
-		worklinedataService.delete(id);
-		workvaluedataService.delete(id);
+	public void delete(@RequestParam(required = true, value = "idsession") Long idsession,
+			@RequestParam(required = true, value = "codeworkdata") String codeworkdata) {
+		if (codeworkdata == null) {
+			workcolumndataService.deleteByIdsession(idsession);
+			worklinedataService.deleteByIdsession(idsession);
+			workvaluedataService.deleteByIdsession(idsession);
+		} else {
+			workcolumndataService.deleteByIdsessionAndCodeworkdata(idsession, codeworkdata);
+			worklinedataService.deleteByIdsessionAndCodeworkdata(idsession, codeworkdata);
+			workvaluedataService.deleteByIdsessionAndCodeworkdata(idsession, codeworkdata);
+		}
 	}
-	
-	
-	
 
 }
