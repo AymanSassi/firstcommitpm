@@ -2,13 +2,11 @@ package com.am.repository;
 
 import java.util.List;
 
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import com.am.entity.Tview;
-import com.am.entity.Tvocabword;
 
 public interface ViewRepository extends CrudRepository<Tview, Long> , JpaSpecificationExecutor{
 	

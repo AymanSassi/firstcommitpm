@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.am.entity.Tvocab;
 import com.am.entity.Tvocabword;
 
 public interface VocabwordRepository extends CrudRepository<Tvocabword, Long> ,JpaSpecificationExecutor  {
