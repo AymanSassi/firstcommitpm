@@ -56,7 +56,9 @@ public class WorkdataResource {
 	@ResponseBody
 	@CrossOrigin
 	public ResponseEntity<List<Tworklinedata>> lineSaveAll(@RequestBody List<Tworklinedata> tworklinedata) {
+		System.out.println("save");
 		List<Tworklinedata> tworklinedatasave = worklinedataService.saveAll(tworklinedata);
+		System.out.println("saveafter");
 		return new ResponseEntity<List<Tworklinedata>>(tworklinedatasave, HttpStatus.OK);
 	}
 
@@ -116,7 +118,7 @@ public class WorkdataResource {
 	@ResponseBody
 	@CrossOrigin
 	public void delete(@RequestParam(required = true, value = "idsession") Long idsession,
-			@RequestParam(required = true, value = "codeworkdata") String codeworkdata) {
+			@RequestParam(required = false, value = "codeworkdata") String codeworkdata) {
 		if (codeworkdata == null) {
 			workcolumndataService.deleteByIdsession(idsession);
 			worklinedataService.deleteByIdsession(idsession);

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.am.entity.Tperson;
 import com.am.entity.Tworklinedata;
@@ -14,6 +15,7 @@ import com.am.service.PersonService;
 import com.am.service.WorklinedataService;
 
 @Service
+@Transactional
 public class WorklinedataServiceImpl implements WorklinedataService {
 
 	@Autowired
